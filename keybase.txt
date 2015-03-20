@@ -1,0 +1,67 @@
+==================================================================
+https://keybase.io/epl692
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://epl692.github.io
+  * I am epl692 (https://keybase.io/epl692) on keybase.
+  * I have a public key with fingerprint 4FF3 53B9 8261 ADC6 ECA1  A634 B109 236B C427 4269
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "4ff353b98261adc6eca1a634b109236bc4274269",
+            "host": "keybase.io",
+            "key_id": "b109236bc4274269",
+            "kid": "01013bf9f05787e2e0366e4d4d7f8be27238b9ffe8561e0ac8e83fd147d54ed091bb0a",
+            "uid": "a376483b3d32169f7dac58aae5c11d19",
+            "username": "epl692"
+        },
+        "service": {
+            "hostname": "epl692.github.io",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1426883296,
+    "expire_in": 157680000,
+    "prev": "3ddb7a42e4011befd1ee9a201d5103b359733cc4df2f52a77157c414c69e2a69",
+    "seqno": 6,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.8
+Comment: https://keybase.io/crypto
+
+yMIaAnicbZJbSBRRGMfXWkW3CyWE9qYTUcgic+bMdUUsVCyCQkoSLLZzZs7opM5s
+u7PqImaYkBeSyAtoZg+JVkpQT3bBUkISX8wXyUgzMtrwEiWIgtEZq4eg83I43/f/
+fh//P+fVru0uT8zXBx/LyOZGc8zESHbYVbCz7kM1gy0twviqmVKydemGWUyCgaBh
+2oyP4XUdChArMicCpKkiURFAIuQxYBUOiljlOYnnRIXxMiVWyJmgGIxCJN2waI0+
+/IZGq//Rl241WMACiHVFZwVJlghHWCiKhNd4TdJlTDiJgzJWdJ3IgggIi1SZyFDX
+AC9pAk80VgEYs4jiwls4BCWRlyGGGuSAqOiShlRBRogIKgAacPaGQyRoonJC1SRQ
+JiocU+NlaK3CUIkTgOPjn356sWGXhPFvR4GgZVuqVUa7JbYdCPmcaTsScOSVBPv/
+gPzYMDWaJJ2oIMGQYZmMD1ClahsOGdAMZBlyiuhlSFXACBK/4SgESZRZepw9pIIi
+oaZhCfEc4VkAMKHGCVEQxwJNACy1KSgShKrKazqnCxySJIpQecCrokI4tJVziFwy
+LcZHN9momCJDRrGJ7HCQMDWjL8+5XTEeV1zsNucvuDwJe/7+kHd18a42946sQKfn
+ZM5q6ixf37PemPa96nOjd+heUzQ6lVQ1OjAdOpt7ANxZ8/dnuGfyUUsD0O/2t+Wl
+RI+5xwaykzOvFm0cXVpbPpjkf1xzvPDMzOsVT1lsXWTq9vi3/PgiE2el9JZ/qjzR
+sbjoqx9bBE1VmWm+F7BjcqY6stl1ZbnrzaHJxPLZaNuRfb2d4cuDq196vb7mxEhe
+/8L8j8LW09Ut126eb51Yz51Zqp1IfRo1ShcaevYXxbnmnj2aSxmofHLfXdA8n96e
+M3C94kaHssoOFti714cnh/pG025117ZbFyPTw3EJ3SV7T3U8jF74uXJ4vMtcH2tO
+znj+/m3f5Mgv9xMy1A==
+=7/Ge
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/epl692
+
+==================================================================
