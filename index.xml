@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Eric&#39;s Nerons</title>
+    <link>http://epl692.github.io/</link>
+    <description>Recent content on Eric&#39;s Nerons</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Jun 2022 23:20:32 -0400</lastBuildDate><atom:link href="http://epl692.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World</title>
+      <link>http://epl692.github.io/posts/hello/</link>
+      <pubDate>Wed, 08 Jun 2022 23:20:32 -0400</pubDate>
+      
+      <guid>http://epl692.github.io/posts/hello/</guid>
+      <description>#Hello World I seem to have misplaced the old blog, so here&amp;rsquo;s a new one. What&amp;rsquo;s new with Eric? Well, I&amp;rsquo;m learning rust, been playing with Kotlin a little. Personally, I&amp;rsquo;ve been feeling a little better I think. There&amp;rsquo;s always the eb and flow to all of it. I look forward to seeing how things go. On the radio front, I continue to run my packet bbs station, and have been messaging people with that.</description>
+    </item>
+    
+  </channel>
+</rss>
