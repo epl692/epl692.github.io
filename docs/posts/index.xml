@@ -2,17 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Eric&#39;s Nerons</title>
-    <link>http://epl692.github.io/posts/</link>
+    <link>https://epl692.github.io/posts/</link>
     <description>Recent content in Posts on Eric&#39;s Nerons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jun 2022 23:20:32 -0400</lastBuildDate><atom:link href="http://epl692.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Jun 2022 11:09:03 -0400</lastBuildDate><atom:link href="https://epl692.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Green</title>
+      <link>https://epl692.github.io/posts/green/</link>
+      <pubDate>Thu, 09 Jun 2022 11:09:03 -0400</pubDate>
+      
+      <guid>https://epl692.github.io/posts/green/</guid>
+      <description>Well, how about today. It&amp;rsquo;s a nice blue green day today and I&amp;rsquo;m actally trying to be outside. Had a cup of tea this morning. Rather enjoying this. As for projects, I think I am going to work on my ferrissay cli app today. It&amp;rsquo;s mainly a jumble of cargo crates, but it&amp;rsquo;s interesting learning it. I&amp;rsquo;ll post more about it when it&amp;rsquo;s more ready. Currently it only greets people, I would like it to be more like cowsay when it&amp;rsquo;s done.</description>
+    </item>
+    
     <item>
       <title>Hello World</title>
-      <link>http://epl692.github.io/posts/hello/</link>
+      <link>https://epl692.github.io/posts/hello/</link>
       <pubDate>Wed, 08 Jun 2022 23:20:32 -0400</pubDate>
       
-      <guid>http://epl692.github.io/posts/hello/</guid>
+      <guid>https://epl692.github.io/posts/hello/</guid>
       <description>I seem to have misplaced the old blog, so here&amp;rsquo;s a new one. What&amp;rsquo;s new with Eric? Well, I&amp;rsquo;m learning rust, been playing with Kotlin a little. Personally, I&amp;rsquo;ve been feeling a little better I think. There&amp;rsquo;s always the eb and flow to all of it. I look forward to seeing how things go. On the radio front, I continue to run my packet bbs station, and have been messaging people with that.</description>
     </item>
     
