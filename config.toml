@@ -1,0 +1,5 @@
+baseURL = 'http://epl692.github.io/'
+languageCode = 'en-us'
+title = "Eric's Nerons"
+theme = "ananke"
+publishDir = "docs/"
