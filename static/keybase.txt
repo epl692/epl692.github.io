@@ -1,0 +1,88 @@
+==================================================================
+https://keybase.io/epl692
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://epl692.github.io
+  * I am epl692 (https://keybase.io/epl692) on keybase.
+  * I have a public key with fingerprint AC8C 1569 7C16 F312 D7C4  1781 5A24 950F EF01 7EFB
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01013bf9f05787e2e0366e4d4d7f8be27238b9ffe8561e0ac8e83fd147d54ed091bb0a",
+      "fingerprint": "ac8c15697c16f312d7c417815a24950fef017efb",
+      "host": "keybase.io",
+      "key_id": "5a24950fef017efb",
+      "kid": "010104e306c2640bf823748d87edf221bffc5cc662719cba39c61df2b81513c425af0a",
+      "uid": "a376483b3d32169f7dac58aae5c11d19",
+      "username": "epl692"
+    },
+    "merkle_root": {
+      "ctime": 1654807613,
+      "hash_meta": "224c274345babb265eb5af0cbdbfbd5ff59005cead08436cdf05318e08071457",
+      "seqno": 22645628
+    },
+    "revoke": {
+      "sig_ids": [
+        "776d49ac78a24f285c77f5bdb47f47135c17bdecd694d053302138e8e0d307d80f"
+      ]
+    },
+    "service": {
+      "hostname": "epl692.github.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1654807618,
+  "expire_in": 157680000,
+  "prev": "ab79cbc6f05252563a6989ca962ed1f54bec75009f668c9330e04c18df4297a6",
+  "seqno": 203,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.13
+Comment: https://keybase.io/crypto
+
+yMP+AnicbVN7UBVVHOYpwWiWU5ZkM7kWU8rgOfs4Z5fGJrLsamSKmpLYZc9juStw
+7/XeBXxkmDQB6qgxMk7io0h7jMKdMQff5uMiGWNplppDM2o0DIJlopKQ1lmq6THt
++WNn93y/7/f9vu+c6JD4mJTYVx6tHfpT7Ov9sa1HFpXEkPq8ZxZLJMAWSpmLpUI+
+8OJFjIcdb6HNpEwJQAAVYhkW0LCOucyBghBXmcqwpRMuY1nRiWFZXNcQ5MCkOtcV
+i0EVM03lDBiQEGBK6ZJl+wt4KBiy/Y6gFTgKNWRgCpGlQJlhqkKsQ82UVUMDFrcA
+xNwiotAXCLsVQhwxwzzDDoh/4sM7IO9/8H/rBipXAKIyUgGxdFnBqs7EDMySZUgs
+i2qUIiRjaFBiKgZFUOwQoQEqVJU10xrQXTJAZyoYqbpCFKbIEBkWZibVdNPkGoWQ
+QcMFhnnIbxZzgebBImTI0pJ0qZiHCou4NxQIOK611LFdAESaqgOMoCLGM8M+bzF3
+TFEnyyqVsaqoGjEJkZHGiSuDEkYswjTL0gwANMpNBnRVQZSJVBSocyDIoKphoSLM
+5/sDUqYshtaQrAsJIV4aKORu97BdIFwLS5lzJIwRUw2TYl0YaMm6RjG2NNFHxZaK
+oSLGwoRxypChMtFEATJURLQcMAVgpgNLmrvE7RYqtekAuRvTv8bPKLAdXwn5I7Bg
+KOAEaKBI7PocJxjOdM1xFgZdeBkn3j+JvMT2M3FQREUpD4XtgF+YJZD/9U1Pl/iC
+oB3iXttFaBjpQDxuH17qxkWwCJUi4Y8sFlJMZOgGNQ0kcwYtTSWcYg0Aw0JIp4YY
+jwOVQp1ZqmxgE/3DSCAycswCQSrs85tOSYhLS44czkuIiU2JGZQY516hmJTke/66
+WPvsobdTh820FSaPLZu8Km191Yf6eo2cjs886jlUym7DUzuv3zobmbkg582q5AlN
+2Z6+jK/bozOKRyycvPuFJ73vbw60Je6BkeNjyqo65zRkTfxsi37Mszwt694U9WLO
+shf5J9eCFS11nfkvT/YMqemKL8semd++5ejjvp6UBz6f+O1v3eV8mSdacObOvtHh
+nuyRc6enpx6oNlNWbh8TMI/XnK/e0BFJ2pyavXRd0q1zkyaciK52jhzsOXujf8Uu
+kLuq58ufV9xpf++HxhO9w0/t/X5lUq8+4uO0vImtTu1X6V9Uw/nj+itezZ+9aPy0
+jrhZTuemeSXX2rJnzOqqe3ZnAtx+uaE143BnIsxreKrSs69m/emD9+2ZlTgtKxL+
+gFX21l9rnnQpt+mX6ovvphmPtTRN2TD07GIPWLB09p7bG5vLx3VePbR09egNffuf
+n7nm5juR9rEtb5fXzTs6RrpQsf/p/H6/d+PducbDONkXF73047a2xukrz+ScT93R
+dXJ6Qtcjnx4oGnSlfs4xM7kKtNbuvD51cM2Da+p/femb7pstu1cdDnY8tGtvXVnH
++b7h3dn4TjQtkjp607YS3/KTbTeWVx5o25V0s3zHE7lvfLfjwuXaK+PHfQRHxLfh
+2taEg5HG++PO5Axr7AWvycP6puBFW+vCFU1Xs7rXNitxe0d15EiXBqeuHS43RLe+
+Vdk8asu5u9ase27q7z55Cu8=
+=NwwN
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/epl692
+
+==================================================================
