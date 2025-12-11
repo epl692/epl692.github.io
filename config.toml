@@ -19,7 +19,7 @@ enableRobotsTXT = true
   [languages.en]
     title = "Eric's Nerons"
     weight = 1
-    contentDir = "content/en"
+    contentDir = "content/"
     # languageDirection = 'rtl' for Right-To-Left languages
 
 [sitemap]
