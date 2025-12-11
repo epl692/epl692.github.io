@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Eric&#39;s Nerons</title>
-    <link>http://localhost:1313/posts/</link>
+    <link>https://epl692.github.io/posts/</link>
     <description>Recent content in Posts on Eric&#39;s Nerons</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Wed, 10 Dec 2025 21:57:18 -0500</lastBuildDate>
-    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://epl692.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>And We&#39;re Back!</title>
-      <link>http://localhost:1313/posts/and-we-are-back/</link>
+      <link>https://epl692.github.io/posts/and-we-are-back/</link>
       <pubDate>Wed, 10 Dec 2025 21:57:18 -0500</pubDate>
-      <guid>http://localhost:1313/posts/and-we-are-back/</guid>
+      <guid>https://epl692.github.io/posts/and-we-are-back/</guid>
       <description>&lt;h1 id=&#34;and-were-back&#34;&gt;And We&amp;rsquo;re back!&lt;/h1&gt;&#xA;&lt;p&gt;And we are back from that&amp;hellip; interesting break.&#xA;Rumors of me giving up blogging are greatly exaggerated, and I&amp;rsquo;m back! Previously mentioned weight loss doctor visit went well, I&amp;rsquo;m much lighter now. I&amp;rsquo;ve gone almost exclusively Linux at this point, and feel like I&amp;rsquo;m much more creative these days than I used to be. At least I try.&lt;/p&gt;&#xA;&lt;h1 id=&#34;looking-forward-to-2026&#34;&gt;Looking Forward to 2026&lt;/h1&gt;&#xA;&lt;p&gt;Some projects I want to try in 2026:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Life as We Know It</title>
-      <link>http://localhost:1313/posts/life-as-we-know-it/</link>
+      <link>https://epl692.github.io/posts/life-as-we-know-it/</link>
       <pubDate>Sun, 12 Jun 2022 22:24:42 -0400</pubDate>
-      <guid>http://localhost:1313/posts/life-as-we-know-it/</guid>
+      <guid>https://epl692.github.io/posts/life-as-we-know-it/</guid>
       <description>&lt;p&gt;Well, this is going to be a somewhat personal post, but first, I&amp;rsquo;ll give you some tech updates. I think I&amp;rsquo;m going to rewire the home network. It&amp;rsquo;s gotten a little convoluted over time and I just think it needs a spruce up. We will so what I can come up with, but I have some hopes for it. Just like getting rewired myself. Tomorrow morning I see a Doctor about loosing some weight. I&amp;rsquo;m a bit apprehensive but we will see. If all goes well, I&amp;rsquo;ll have a few weeks to sit with my computer and write some code or something. Or hop on the airwaves&amp;hellip; or maybe get around to writing a plugin for LinBPQ like I always thought would be fun&amp;hellip; that would allow me to program and get on the airwaves. All for now.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Green</title>
-      <link>http://localhost:1313/posts/green/</link>
+      <link>https://epl692.github.io/posts/green/</link>
       <pubDate>Thu, 09 Jun 2022 11:09:03 -0400</pubDate>
-      <guid>http://localhost:1313/posts/green/</guid>
+      <guid>https://epl692.github.io/posts/green/</guid>
       <description>&lt;p&gt;Well, how about today. It&amp;rsquo;s a nice blue green day today and I&amp;rsquo;m actally trying to be outside. Had a cup of tea this morning. Rather enjoying this. As for projects, I think I am going to work on my &lt;a href=&#34;https://github.com/epl692/ferrissay/&#34;&gt;ferrissay&lt;/a&gt; cli app today. It&amp;rsquo;s mainly a jumble of cargo crates, but it&amp;rsquo;s interesting learning it. I&amp;rsquo;ll post more about it when it&amp;rsquo;s more ready. Currently it only greets people, I would like it to be more like cowsay when it&amp;rsquo;s done.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hello World</title>
-      <link>http://localhost:1313/posts/hello/</link>
+      <link>https://epl692.github.io/posts/hello/</link>
       <pubDate>Wed, 08 Jun 2022 23:20:32 -0400</pubDate>
-      <guid>http://localhost:1313/posts/hello/</guid>
+      <guid>https://epl692.github.io/posts/hello/</guid>
       <description>&lt;p&gt;I seem to have misplaced the old blog, so here&amp;rsquo;s a new one. What&amp;rsquo;s new with Eric? Well, I&amp;rsquo;m learning rust, been playing with Kotlin a little. Personally, I&amp;rsquo;ve been feeling a little better I think. There&amp;rsquo;s always the eb and flow to all of it. I look forward to seeing how things go. On the radio front, I continue to run my packet bbs station, and have been messaging people with that. If you want to say hi, I&amp;rsquo;m ke8gry on Winlink.&lt;/p&gt;</description>
     </item>
   </channel>
