@@ -15,6 +15,10 @@ enableRobotsTXT = true
 [markup.highlight]
   noClasses = false
 
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
 [languages]
   [languages.en]
     title = "Eric's Nerons"
