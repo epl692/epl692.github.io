@@ -2,6 +2,7 @@
 title: "And We're Back!"
 date: 2025-12-10T21:57:18-05:00
 author: Eric Lynema
+tags: ['return-to-blogging', '2025', 'new-year']
 ---
 
 # And We're back!

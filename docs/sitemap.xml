@@ -2,41 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://epl692.github.io/posts/and-we-are-back/</loc>
+    <loc>http://localhost:1313/tags/2025/</loc>
     <lastmod>2025-12-10T21:57:18-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://epl692.github.io/</loc>
+    <loc>http://localhost:1313/posts/and-we-are-back/</loc>
     <lastmod>2025-12-10T21:57:18-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://epl692.github.io/posts/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2025-12-10T21:57:18-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://epl692.github.io/posts/life-as-we-know-it/</loc>
+    <loc>http://localhost:1313/tags/new-year/</loc>
+    <lastmod>2025-12-10T21:57:18-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-12-10T21:57:18-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/return-to-blogging/</loc>
+    <lastmod>2025-12-10T21:57:18-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-12-10T21:57:18-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/life-as-we-know-it/</loc>
     <lastmod>2022-06-12T22:24:42-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://epl692.github.io/posts/green/</loc>
+    <loc>http://localhost:1313/posts/green/</loc>
     <lastmod>2022-06-09T11:09:03-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://epl692.github.io/posts/hello/</loc>
+    <loc>http://localhost:1313/posts/hello/</loc>
     <lastmod>2022-06-08T23:20:32-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://epl692.github.io/categories/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://epl692.github.io/tags/</loc>
+    <loc>http://localhost:1313/categories/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
