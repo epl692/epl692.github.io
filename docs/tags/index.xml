@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Eric&#39;s Nerons</title>
+    <title>Tags on Eric&#39;s Blog</title>
     <link>http://localhost:1313/tags/</link>
-    <description>Recent content in Tags on Eric&#39;s Nerons</description>
+    <description>Recent content in Tags on Eric&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Wed, 10 Dec 2025 21:57:18 -0500</lastBuildDate>
@@ -27,6 +27,41 @@
       <link>http://localhost:1313/tags/return-to-blogging/</link>
       <pubDate>Wed, 10 Dec 2025 21:57:18 -0500</pubDate>
       <guid>http://localhost:1313/tags/return-to-blogging/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Packet</title>
+      <link>http://localhost:1313/tags/packet/</link>
+      <pubDate>Sun, 12 Jun 2022 22:24:42 -0400</pubDate>
+      <guid>http://localhost:1313/tags/packet/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Radio</title>
+      <link>http://localhost:1313/tags/radio/</link>
+      <pubDate>Sun, 12 Jun 2022 22:24:42 -0400</pubDate>
+      <guid>http://localhost:1313/tags/radio/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rust</title>
+      <link>http://localhost:1313/tags/rust/</link>
+      <pubDate>Thu, 09 Jun 2022 11:09:03 -0400</pubDate>
+      <guid>http://localhost:1313/tags/rust/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hello-World</title>
+      <link>http://localhost:1313/tags/hello-world/</link>
+      <pubDate>Wed, 08 Jun 2022 23:20:32 -0400</pubDate>
+      <guid>http://localhost:1313/tags/hello-world/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Winlink</title>
+      <link>http://localhost:1313/tags/winlink/</link>
+      <pubDate>Wed, 08 Jun 2022 23:20:32 -0400</pubDate>
+      <guid>http://localhost:1313/tags/winlink/</guid>
       <description></description>
     </item>
   </channel>

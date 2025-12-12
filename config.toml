@@ -1,4 +1,4 @@
-title = "Eric's Nerons"
+title = "Eric's Blog"
 baseURL = "https://epl692.github.io"
 languageCode = "en-us"
 theme = "hugo-theme-terminal"
@@ -18,13 +18,6 @@ enableRobotsTXT = true
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
-
-[languages]
-  [languages.en]
-    title = "Eric's Nerons"
-    weight = 1
-    contentDir = "content/"
-    # languageDirection = 'rtl' for Right-To-Left languages
 
 [sitemap]
   changefreq = "monthly"
@@ -67,6 +60,28 @@ enableRobotsTXT = true
   background_color_class = "bg-black"
   recent_posts_number = 3
 
+
+[languages]
+  [languages.en]
+    title = "Eric's Blog"
+    weight = 1
+    contentDir = "content/"
+    # languageDirection = 'rtl' for Right-To-Left languages
+
+
+      [languages.en.params.logo]
+        logoText = "Eric's Blog"
+        logoHomeLink = "/"
+
+      [languages.en.menu]
+        [[languages.en.menu.main]]
+          identifier = "about"
+          name = "About"
+          url = "/about"
+        [[languages.en.menu.main]]
+          identifier = "tools_ageplus"
+          name = "Tool: Age+"
+          url = "/tools/AgePlus"
 [[params.ananke_socials]]
 name = "twitter"
 url = "https://twitter.com/epl692"

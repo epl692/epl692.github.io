@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Return-to-Blogging on Eric&#39;s Nerons</title>
+    <title>Return-to-Blogging on Eric&#39;s Blog</title>
     <link>http://localhost:1313/tags/return-to-blogging/</link>
-    <description>Recent content in Return-to-Blogging on Eric&#39;s Nerons</description>
+    <description>Recent content in Return-to-Blogging on Eric&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Wed, 10 Dec 2025 21:57:18 -0500</lastBuildDate>
@@ -14,6 +14,13 @@
       <pubDate>Wed, 10 Dec 2025 21:57:18 -0500</pubDate>
       <guid>http://localhost:1313/posts/and-we-are-back/</guid>
       <description>&lt;h1 id=&#34;and-were-back&#34;&gt;And We&amp;rsquo;re back!&lt;/h1&gt;&#xA;&lt;p&gt;And we are back from that&amp;hellip; interesting break.&#xA;Rumors of me giving up blogging are greatly exaggerated, and I&amp;rsquo;m back! Previously mentioned weight loss doctor visit went well, I&amp;rsquo;m much lighter now. I&amp;rsquo;ve gone almost exclusively Linux at this point, and feel like I&amp;rsquo;m much more creative these days than I used to be. At least I try.&lt;/p&gt;&#xA;&lt;h1 id=&#34;looking-forward-to-2026&#34;&gt;Looking Forward to 2026&lt;/h1&gt;&#xA;&lt;p&gt;Some projects I want to try in 2026:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hello World</title>
+      <link>http://localhost:1313/posts/hello/</link>
+      <pubDate>Wed, 08 Jun 2022 23:20:32 -0400</pubDate>
+      <guid>http://localhost:1313/posts/hello/</guid>
+      <description>&lt;p&gt;I seem to have misplaced the old blog, so here&amp;rsquo;s a new one. What&amp;rsquo;s new with Eric? Well, I&amp;rsquo;m learning rust, been playing with Kotlin a little. Personally, I&amp;rsquo;ve been feeling a little better I think. There&amp;rsquo;s always the eb and flow to all of it. I look forward to seeing how things go. On the radio front, I continue to run my packet bbs station, and have been messaging people with that. If you want to say hi, I&amp;rsquo;m ke8gry on Winlink.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

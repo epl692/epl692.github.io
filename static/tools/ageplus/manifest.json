@@ -1,0 +1,16 @@
+{
+    "name": "AgePlus Calculator",
+    "short_name": "AgePlus",
+    "description": "Calculate dates 18 and 30 months from a given date",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#121212",
+    "theme_color": "#bb86fc",
+    "icons": [
+        {
+            "src": "icon.svg",
+            "sizes": "192x192",
+            "type": "image/svg+xml"
+        }
+    ]
+}

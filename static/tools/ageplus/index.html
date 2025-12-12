@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgePlus Calculator</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <style>
+        html, body {
+            height: 100vh;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            max-width: 350px;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #bb86fc;
+        }
+        input {
+            width: 250px;
+            padding: 10px;
+            margin: 10px auto;
+            display: block;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #2c2c2c;
+            color: #ffffff;
+            font-size: 16px;
+        }
+        button {
+            width: 250px;
+            padding: 10px;
+            background-color: #bb86fc;
+            color: #121212;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #9c4dcc;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #2c2c2c;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .error {
+            color: #cf6679;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="icon.svg" alt="AgePlus Logo" style="width: 50px; height: 50px; display: block; margin: 0 auto 10px;">
+        <h1>AgePlus Calculator</h1>
+        <p style="text-align: center; margin-bottom: 20px; font-size: 14px; color: #cccccc;">Enter the child's birthday to see when they are a Toddler or School Age.</p>
+        <input type="date" id="dateInput">
+        <button onclick="calculate()">Calculate</button>
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        function addMonths(date, months) {
+            // Set time to noon to avoid timezone off-by-one errors
+            const result = new Date(date);
+            result.setHours(12, 0, 0, 0);
+            const day = result.getDate();
+            result.setDate(1); // Prevent rollover
+            result.setMonth(result.getMonth() + months);
+            // Set to last day of month if original day doesn't exist in new month
+            const lastDay = new Date(result.getFullYear(), result.getMonth() + 1, 0).getDate();
+            result.setDate(Math.min(day, lastDay));
+            return result;
+        }
+
+        function formatDate(date) {
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const year = String(date.getFullYear()).slice(-2);
+            return `${month}/${day}/${year}`;
+        }
+
+        function calculate() {
+            const dateStr = document.getElementById('dateInput').value;
+            const resultDiv = document.getElementById('result');
+
+            try {
+                // Parse as UTC to avoid timezone issues
+                const [year, month, day] = dateStr.split('-').map(Number);
+                const date = new Date(Date.UTC(year, month - 1, day, 12, 0, 0, 0));
+                if (isNaN(date.getTime())) throw new Error('Invalid date');
+
+                const date18 = addMonths(date, 18);
+                const date30 = addMonths(date, 30);
+
+                const formattedInput = formatDate(date);
+                resultDiv.innerHTML = `
+                    <p><strong>Toddler (18 months):</strong> ${formatDate(date18)}</p>
+                    <p><strong>School aged (30 months):</strong> ${formatDate(date30)}</p>
+                `;
+                resultDiv.className = 'result';
+                resultDiv.style.display = 'block';
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="error">${error.message}</p>`;
+                resultDiv.className = 'result error';
+                resultDiv.style.display = 'block';
+            }
+        }
+
+        // Set default date to today
+        window.addEventListener('load', () => {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('dateInput').value = today;
+        });
+
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js');
+            });
+        }
+    </script>
+</body>
+</html>
