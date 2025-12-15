@@ -12,4 +12,4 @@ I'm excited to say that the ULS reflects my new ham radio license status as an e
 
 Maybe with Christmas break coming up, I can get on the radio some more! That would be fun. Gotta try out a few new things, right?
 
-sMy wife and daughter will be trying for their licenses in March, I think. We will see!
+My wife and daughter will be trying for their licenses in March, I think. We will see!
