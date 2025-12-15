@@ -6,8 +6,29 @@
     <description>Recent content in Tags on Eric&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Dec 2025 21:57:18 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 15 Dec 2025 16:01:46 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FCC</title>
+      <link>http://localhost:1313/tags/fcc/</link>
+      <pubDate>Mon, 15 Dec 2025 16:01:46 -0500</pubDate>
+      <guid>http://localhost:1313/tags/fcc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Licensing</title>
+      <link>http://localhost:1313/tags/licensing/</link>
+      <pubDate>Mon, 15 Dec 2025 16:01:46 -0500</pubDate>
+      <guid>http://localhost:1313/tags/licensing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Radio</title>
+      <link>http://localhost:1313/tags/radio/</link>
+      <pubDate>Mon, 15 Dec 2025 16:01:46 -0500</pubDate>
+      <guid>http://localhost:1313/tags/radio/</guid>
+      <description></description>
+    </item>
     <item>
       <title>2025</title>
       <link>http://localhost:1313/tags/2025/</link>
@@ -34,13 +55,6 @@
       <link>http://localhost:1313/tags/packet/</link>
       <pubDate>Sun, 12 Jun 2022 22:24:42 -0400</pubDate>
       <guid>http://localhost:1313/tags/packet/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Radio</title>
-      <link>http://localhost:1313/tags/radio/</link>
-      <pubDate>Sun, 12 Jun 2022 22:24:42 -0400</pubDate>
-      <guid>http://localhost:1313/tags/radio/</guid>
       <description></description>
     </item>
     <item>
