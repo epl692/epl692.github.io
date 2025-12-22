@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#181A20">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <title>Hole Depth Calculator</title>
+</head>
+<body>
+  <main class="container glass">
+    <div class="badge">HDC</div>
+    <h1 class="gradient-text">Hole Depth Calculator</h1>
+    <form id="holeForm">
+      <div class="input-group">
+        <label for="volume"><span>Volume</span> <small>(ft³)</small></label>
+        <input type="number" id="volume" name="volume" min="0" step="any" required placeholder="e.g. 100">
+      </div>
+      <div class="input-group">
+        <label for="diameter"><span>Diameter</span> <small>(inches)</small></label>
+        <input type="number" id="diameter" name="diameter" min="0" step="any" required placeholder="e.g. 48">
+      </div>
+      <button type="submit" class="accent-btn">Calculate Depth</button>
+    </form>
+    <div id="result"></div>
+    <footer>
+      <small>Hole Depth Calculator &copy; 2025 Eric Lynema</small>
+    </footer>
+  <script src="app.js"></script>
+</body>
+</html>

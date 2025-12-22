@@ -1,0 +1,17 @@
+{
+  "name": "Hole Depth Calculator",
+  "short_name": "HoleDepth",
+  "description": "Calculate the depth of a hole from volume and diameter. Modern dark theme PWA.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#181A20",
+  "theme_color": "#181A20",
+  "scope": ".",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ]
+}
