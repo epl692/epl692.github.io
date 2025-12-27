@@ -14,7 +14,7 @@
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212;
+            background: radial-gradient(ellipse at top left, #181A20 60%, #101014 100%);
             color: #ffffff;
             margin: 0;
             padding: 20px;
@@ -23,14 +23,38 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            transition: background 0.5s;
         }
         .container {
-            background-color: #1e1e1e;
+            background: linear-gradient(180deg, rgba(22,22,24,0.95), rgba(28,28,30,0.95));
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
             max-width: 350px;
             width: 100%;
+            position: relative;
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+        
+        .badge {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 46px;
+            height: 46px;
+            border-radius: 8px;
+            background: #bb86fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(187, 134, 252, 0.18);
+        }
+        
+        .badge img {
+            width: 32px;
+            height: 32px;
         }
         
         h1 {
@@ -77,7 +101,9 @@
 </head>
 <body>
     <div class="container">
-        <img src="icon.svg" alt="AgePlus Logo" style="width: 50px; height: 50px; display: block; margin: 0 auto 10px;">
+        <div class="badge">
+            <img src="icon.svg" alt="AgePlus Logo">
+        </div>
         <h1>AgePlus Calculator</h1>
         <p style="text-align: center; margin-bottom: 20px; font-size: 14px; color: #cccccc;">Enter the child's birthday to see when they are a Toddler or School Age.</p>
         <input type="date" id="dateInput">
