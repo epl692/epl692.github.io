@@ -64,6 +64,11 @@ body {
   font-weight: 700;
   box-shadow: 0 6px 20px rgba(149, 83, 255, 0.18);
 }
+
+.badge img {
+  width: 32px;
+  height: 32px;
+}
 form {
   display: flex;
   flex-direction: column;
