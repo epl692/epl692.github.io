@@ -2,121 +2,126 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://epl692.github.io/</loc>
+    <lastmod>2026-02-13T22:57:53-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://epl692.github.io/posts/on-accessability-in-tech/</loc>
+    <lastmod>2026-02-13T22:57:53-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://epl692.github.io/posts/</loc>
+    <lastmod>2026-02-13T22:57:53-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://epl692.github.io/tags/hows-it-going/</loc>
     <lastmod>2025-12-28T07:38:22-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/hows-it-going/</loc>
+    <loc>https://epl692.github.io/tags/radio/</loc>
     <lastmod>2025-12-28T07:38:22-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://epl692.github.io/tags/</loc>
     <lastmod>2025-12-28T07:38:22-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/radio/</loc>
+    <loc>https://epl692.github.io/posts/the-foam-tower-base-update/</loc>
     <lastmod>2025-12-28T07:38:22-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://epl692.github.io/tags/tower/</loc>
     <lastmod>2025-12-28T07:38:22-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/posts/the-foam-tower-base-update/</loc>
+    <loc>https://epl692.github.io/tags/update/</loc>
     <lastmod>2025-12-28T07:38:22-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/tower/</loc>
-    <lastmod>2025-12-28T07:38:22-05:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/update/</loc>
-    <lastmod>2025-12-28T07:38:22-05:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/posts/extra-extra-read-all-about-it/</loc>
+    <loc>https://epl692.github.io/posts/extra-extra-read-all-about-it/</loc>
     <lastmod>2025-12-15T16:01:46-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/fcc/</loc>
+    <loc>https://epl692.github.io/tags/fcc/</loc>
     <lastmod>2025-12-15T16:01:46-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/licensing/</loc>
+    <loc>https://epl692.github.io/tags/licensing/</loc>
     <lastmod>2025-12-15T16:01:46-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/2025/</loc>
+    <loc>https://epl692.github.io/tags/2025/</loc>
     <lastmod>2025-12-10T21:57:18-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/posts/and-we-are-back/</loc>
+    <loc>https://epl692.github.io/posts/and-we-are-back/</loc>
     <lastmod>2025-12-10T21:57:18-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/new-year/</loc>
+    <loc>https://epl692.github.io/tags/new-year/</loc>
     <lastmod>2025-12-10T21:57:18-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/return-to-blogging/</loc>
+    <loc>https://epl692.github.io/tags/return-to-blogging/</loc>
     <lastmod>2025-12-10T21:57:18-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/posts/life-as-we-know-it/</loc>
+    <loc>https://epl692.github.io/posts/life-as-we-know-it/</loc>
     <lastmod>2022-06-12T22:24:42-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/packet/</loc>
+    <loc>https://epl692.github.io/tags/packet/</loc>
     <lastmod>2022-06-12T22:24:42-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/posts/green/</loc>
+    <loc>https://epl692.github.io/posts/green/</loc>
     <lastmod>2022-06-09T11:09:03-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/rust/</loc>
+    <loc>https://epl692.github.io/tags/rust/</loc>
     <lastmod>2022-06-09T11:09:03-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/posts/hello/</loc>
+    <loc>https://epl692.github.io/posts/hello/</loc>
     <lastmod>2022-06-08T23:20:32-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/hello-world/</loc>
+    <loc>https://epl692.github.io/tags/hello-world/</loc>
     <lastmod>2022-06-08T23:20:32-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/winlink/</loc>
+    <loc>https://epl692.github.io/tags/winlink/</loc>
     <lastmod>2022-06-08T23:20:32-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://epl692.github.io/about/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://epl692.github.io/categories/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

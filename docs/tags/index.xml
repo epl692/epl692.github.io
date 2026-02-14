@@ -2,101 +2,101 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Eric&#39;s Blog</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://epl692.github.io/tags/</link>
     <description>Recent content in Tags on Eric&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 28 Dec 2025 07:38:22 -0500</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://epl692.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hows-It-Going</title>
-      <link>http://localhost:1313/tags/hows-it-going/</link>
+      <link>https://epl692.github.io/tags/hows-it-going/</link>
       <pubDate>Sun, 28 Dec 2025 07:38:22 -0500</pubDate>
-      <guid>http://localhost:1313/tags/hows-it-going/</guid>
+      <guid>https://epl692.github.io/tags/hows-it-going/</guid>
       <description></description>
     </item>
     <item>
       <title>Radio</title>
-      <link>http://localhost:1313/tags/radio/</link>
+      <link>https://epl692.github.io/tags/radio/</link>
       <pubDate>Sun, 28 Dec 2025 07:38:22 -0500</pubDate>
-      <guid>http://localhost:1313/tags/radio/</guid>
+      <guid>https://epl692.github.io/tags/radio/</guid>
       <description></description>
     </item>
     <item>
       <title>Tower</title>
-      <link>http://localhost:1313/tags/tower/</link>
+      <link>https://epl692.github.io/tags/tower/</link>
       <pubDate>Sun, 28 Dec 2025 07:38:22 -0500</pubDate>
-      <guid>http://localhost:1313/tags/tower/</guid>
+      <guid>https://epl692.github.io/tags/tower/</guid>
       <description></description>
     </item>
     <item>
       <title>Update</title>
-      <link>http://localhost:1313/tags/update/</link>
+      <link>https://epl692.github.io/tags/update/</link>
       <pubDate>Sun, 28 Dec 2025 07:38:22 -0500</pubDate>
-      <guid>http://localhost:1313/tags/update/</guid>
+      <guid>https://epl692.github.io/tags/update/</guid>
       <description></description>
     </item>
     <item>
       <title>FCC</title>
-      <link>http://localhost:1313/tags/fcc/</link>
+      <link>https://epl692.github.io/tags/fcc/</link>
       <pubDate>Mon, 15 Dec 2025 16:01:46 -0500</pubDate>
-      <guid>http://localhost:1313/tags/fcc/</guid>
+      <guid>https://epl692.github.io/tags/fcc/</guid>
       <description></description>
     </item>
     <item>
       <title>Licensing</title>
-      <link>http://localhost:1313/tags/licensing/</link>
+      <link>https://epl692.github.io/tags/licensing/</link>
       <pubDate>Mon, 15 Dec 2025 16:01:46 -0500</pubDate>
-      <guid>http://localhost:1313/tags/licensing/</guid>
+      <guid>https://epl692.github.io/tags/licensing/</guid>
       <description></description>
     </item>
     <item>
       <title>2025</title>
-      <link>http://localhost:1313/tags/2025/</link>
+      <link>https://epl692.github.io/tags/2025/</link>
       <pubDate>Wed, 10 Dec 2025 21:57:18 -0500</pubDate>
-      <guid>http://localhost:1313/tags/2025/</guid>
+      <guid>https://epl692.github.io/tags/2025/</guid>
       <description></description>
     </item>
     <item>
       <title>New-Year</title>
-      <link>http://localhost:1313/tags/new-year/</link>
+      <link>https://epl692.github.io/tags/new-year/</link>
       <pubDate>Wed, 10 Dec 2025 21:57:18 -0500</pubDate>
-      <guid>http://localhost:1313/tags/new-year/</guid>
+      <guid>https://epl692.github.io/tags/new-year/</guid>
       <description></description>
     </item>
     <item>
       <title>Return-to-Blogging</title>
-      <link>http://localhost:1313/tags/return-to-blogging/</link>
+      <link>https://epl692.github.io/tags/return-to-blogging/</link>
       <pubDate>Wed, 10 Dec 2025 21:57:18 -0500</pubDate>
-      <guid>http://localhost:1313/tags/return-to-blogging/</guid>
+      <guid>https://epl692.github.io/tags/return-to-blogging/</guid>
       <description></description>
     </item>
     <item>
       <title>Packet</title>
-      <link>http://localhost:1313/tags/packet/</link>
+      <link>https://epl692.github.io/tags/packet/</link>
       <pubDate>Sun, 12 Jun 2022 22:24:42 -0400</pubDate>
-      <guid>http://localhost:1313/tags/packet/</guid>
+      <guid>https://epl692.github.io/tags/packet/</guid>
       <description></description>
     </item>
     <item>
       <title>Rust</title>
-      <link>http://localhost:1313/tags/rust/</link>
+      <link>https://epl692.github.io/tags/rust/</link>
       <pubDate>Thu, 09 Jun 2022 11:09:03 -0400</pubDate>
-      <guid>http://localhost:1313/tags/rust/</guid>
+      <guid>https://epl692.github.io/tags/rust/</guid>
       <description></description>
     </item>
     <item>
       <title>Hello-World</title>
-      <link>http://localhost:1313/tags/hello-world/</link>
+      <link>https://epl692.github.io/tags/hello-world/</link>
       <pubDate>Wed, 08 Jun 2022 23:20:32 -0400</pubDate>
-      <guid>http://localhost:1313/tags/hello-world/</guid>
+      <guid>https://epl692.github.io/tags/hello-world/</guid>
       <description></description>
     </item>
     <item>
       <title>Winlink</title>
-      <link>http://localhost:1313/tags/winlink/</link>
+      <link>https://epl692.github.io/tags/winlink/</link>
       <pubDate>Wed, 08 Jun 2022 23:20:32 -0400</pubDate>
-      <guid>http://localhost:1313/tags/winlink/</guid>
+      <guid>https://epl692.github.io/tags/winlink/</guid>
       <description></description>
     </item>
   </channel>
