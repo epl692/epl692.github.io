@@ -55,7 +55,7 @@
             color-scheme: light;
         }
 
-        /* ── SYSTEM: defaults to light, overrides to dark ─ */
+        /* ── SYSTEM: defaults to light ──────────────── */
         [data-theme="system"] {
             --bg-gradient: #ede8fa;
             --bg-card: #ffffff;
@@ -102,22 +102,75 @@
         }
 
         /* ── BASE ───────────────────────────────────── */
-        html, body {
-            margin: 0;
-            padding: 0;
-        }
+        html, body { margin: 0; padding: 0; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: var(--bg-gradient);
             color: var(--text-primary);
-            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100dvh;
+            padding: 28px 16px;
             transition: background 0.3s, color 0.3s;
         }
+
+        /* Report mode: top-align so toolbar sits flush */
+        body.report-mode {
+            justify-content: flex-start;
+            padding-top: 0;
+            padding-bottom: 28px;
+        }
+
+        /* ── TOOLBAR (report mode only) ─────────────── */
+        .toolbar {
+            display: none;
+            width: 100%;
+            max-width: 390px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 10px 0 10px;
+        }
+        body.report-mode .toolbar { display: flex; }
+
+        .btn-back {
+            padding: 7px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--border-input);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn-back:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .btn-pdf {
+            padding: 7px 15px;
+            border-radius: 20px;
+            border: none;
+            background: var(--accent);
+            color: var(--accent-on);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-pdf:hover { background: var(--accent-hover); }
+        .btn-pdf:active { transform: scale(0.97); }
 
         /* ── CONTAINER ──────────────────────────────── */
         .container {
@@ -131,8 +184,11 @@
             border: 1px solid var(--border-card);
             backdrop-filter: var(--blur);
         }
+        body.report-mode .container {
+            border-radius: 16px;
+        }
 
-        /* ── BADGE ──────────────────────────────────── */
+        /* ── BADGE (form mode only) ─────────────────── */
         .badge {
             position: absolute;
             top: -22px;
@@ -148,8 +204,12 @@
             box-shadow: var(--badge-shadow);
         }
         .badge img { width: 32px; height: 32px; }
+        body.report-mode .badge { display: none; }
 
-        /* ── HEADER ─────────────────────────────────── */
+        /* ── FORM SECTION ───────────────────────────── */
+        .form-section { display: block; }
+        body.report-mode .form-section { display: none; }
+
         h1 {
             text-align: center;
             margin: 22px 0 4px;
@@ -196,7 +256,7 @@
             color: var(--accent);
         }
 
-        /* ── FORM ───────────────────────────────────── */
+        /* ── FORM INPUTS ────────────────────────────── */
         .form-group { margin-bottom: 12px; }
         label {
             display: block;
@@ -226,7 +286,6 @@
         }
         input::placeholder { color: var(--text-muted); opacity: 0.8; }
 
-        /* ── BUTTON ─────────────────────────────────── */
         .calc-btn {
             width: 100%;
             padding: 12px;
@@ -244,9 +303,12 @@
         .calc-btn:hover { background: var(--accent-hover); }
         .calc-btn:active { transform: scale(0.98); }
 
-        /* ── RESULT / REPORT ────────────────────────── */
-        .result {
-            margin-top: 20px;
+        /* ── REPORT SECTION ─────────────────────────── */
+        .report-section { display: none; }
+        body.report-mode .report-section { display: block; }
+
+        /* ── REPORT CARD ────────────────────────────── */
+        .result-card {
             border-radius: 10px;
             overflow: hidden;
             border: 1px solid var(--border-milestone);
@@ -254,11 +316,11 @@
         .result-header {
             background: var(--accent);
             color: var(--accent-on);
-            padding: 13px 16px 11px;
+            padding: 14px 16px 12px;
             text-align: center;
         }
         .result-child-name {
-            font-size: 19px;
+            font-size: 20px;
             font-weight: 700;
             letter-spacing: -0.2px;
         }
@@ -324,48 +386,55 @@
             text-align: center;
             font-size: 14px;
             background: var(--bg-result);
+            border-radius: 10px;
+            border: 1px solid var(--border-milestone);
         }
 
         /* ── PRINT ──────────────────────────────────── */
         @media print {
+            @page { margin: 0.65in; }
+
             html, body {
                 background: #fff !important;
                 color: #000 !important;
-                margin: 0;
-                padding: 8px;
-                min-height: auto;
+                margin: 0 !important;
+                padding: 0 !important;
+                min-height: 0 !important;
+                display: block !important;
             }
-            .no-print { display: none !important; }
+
+            /* Hide everything except the report card */
+            .toolbar,
+            .form-section,
+            .badge,
+            .theme-switcher { display: none !important; }
+
             .container {
                 box-shadow: none !important;
-                border: 1px solid #ccc;
-                max-width: 100%;
-                padding: 16px;
-                border-radius: 8px;
-                background: #fff !important;
+                border: none !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                background: transparent !important;
+                max-width: 100% !important;
+                backdrop-filter: none !important;
             }
-            .print-header {
-                display: block !important;
-                text-align: center;
-                font-size: 18px;
-                font-weight: 700;
-                color: #333;
-                margin-bottom: 12px;
-                padding-bottom: 10px;
-                border-bottom: 1px solid #ccc;
-            }
-            .result {
-                border-color: #ccc !important;
-            }
+
+            /* Force report section visible even if JS hasn't run */
+            .report-section { display: block !important; }
+
+            /* Result card print styling */
+            .result-card { border: 1px solid #ccc !important; border-radius: 8px !important; }
             .result-header {
                 background: #2d1b6b !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
-            .result-child-name, .result-dob { color: #fff !important; }
-            .result-body { background: #fff !important; }
+            .result-child-name,
+            .result-dob { color: #fff !important; }
+            .result-body { background: #fff !important; padding: 14px !important; }
+            .milestones-label { color: #888 !important; }
             .milestone {
-                background: #f7f4fc !important;
+                background: #f5f2fc !important;
                 border-color: #ddd !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
@@ -379,25 +448,38 @@
                 background: #fff !important;
             }
         }
-        .print-header { display: none; }
     </style>
 </head>
 <body>
+
+    <!-- Toolbar: visible only in report mode, hidden on print -->
+    <div class="toolbar">
+        <button class="btn-back" onclick="showForm()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back
+        </button>
+        <button class="btn-pdf" onclick="exportPDF()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export PDF
+        </button>
+    </div>
+
     <div class="container">
-        <div class="badge no-print">
+
+        <!-- Badge: form mode only -->
+        <div class="badge">
             <img src="icon.svg" alt="Age+">
         </div>
 
-        <div class="print-header">Age+ Licensing Milestones</div>
-
-        <div class="no-print">
+        <!-- ── FORM SECTION ── -->
+        <div class="form-section">
             <h1>Age+ Calculator</h1>
             <p class="subtitle">Michigan child care licensing milestones &amp; ratio categories</p>
 
             <div class="theme-switcher">
                 <button class="theme-btn" data-tv="system" onclick="setTheme('system')">System</button>
-                <button class="theme-btn" data-tv="light" onclick="setTheme('light')">Light</button>
-                <button class="theme-btn" data-tv="dark" onclick="setTheme('dark')">Dark</button>
+                <button class="theme-btn" data-tv="light"  onclick="setTheme('light')">Light</button>
+                <button class="theme-btn" data-tv="dark"   onclick="setTheme('dark')">Dark</button>
             </div>
 
             <div class="form-group">
@@ -411,10 +493,13 @@
             <button class="calc-btn" onclick="calculate()">Calculate Milestones</button>
         </div>
 
-        <div id="result"></div>
+        <!-- ── REPORT SECTION ── -->
+        <div class="report-section" id="reportSection"></div>
+
     </div>
 
     <script>
+        /* ── Theme ── */
         function setTheme(t) {
             document.documentElement.setAttribute('data-theme', t);
             localStorage.setItem('ageplus-theme', t);
@@ -422,10 +507,9 @@
                 b.classList.toggle('active', b.dataset.tv === t)
             );
         }
-
-        // Restore saved theme (default: system)
         setTheme(localStorage.getItem('ageplus-theme') || 'system');
 
+        /* ── Date helpers ── */
         function addMonths(date, months) {
             const d = new Date(date);
             d.setHours(12, 0, 0, 0);
@@ -438,9 +522,9 @@
         }
 
         function fmt(date) {
-            const m = String(date.getMonth() + 1).padStart(2, '0');
-            const d = String(date.getDate()).padStart(2, '0');
-            return `${m}/${d}/${date.getFullYear()}`;
+            return String(date.getMonth() + 1).padStart(2, '0') + '/' +
+                   String(date.getDate()).padStart(2, '0') + '/' +
+                   date.getFullYear();
         }
 
         function esc(s) {
@@ -449,14 +533,16 @@
             return d.innerHTML;
         }
 
+        /* ── Calculate & switch to report view ── */
         function calculate() {
             const dateStr = document.getElementById('dateInput').value;
             const rawName = document.getElementById('nameInput').value.trim();
-            const name = rawName || 'Child';
-            const resultDiv = document.getElementById('result');
+            const name    = rawName || 'Child';
+            const section = document.getElementById('reportSection');
 
             if (!dateStr) {
-                resultDiv.innerHTML = '<div class="error-msg">Please enter a date of birth.</div>';
+                section.innerHTML = '<div class="error-msg">Please enter a date of birth.</div>';
+                showReport();
                 return;
             }
 
@@ -473,45 +559,68 @@
                     month: '2-digit', day: '2-digit', year: 'numeric'
                 });
 
-                resultDiv.innerHTML = `
-                    <div class="result-header">
-                        <div class="result-child-name">${esc(name)}</div>
-                        <div class="result-dob">Date of Birth: ${fmt(dob)}</div>
-                    </div>
-                    <div class="result-body">
-                        <div class="milestones-label">Michigan Licensing Milestones</div>
-                        <div class="milestone">
-                            <div class="milestone-info">
-                                <div class="milestone-title">Infant &rarr; Toddler</div>
-                                <div class="milestone-rule">12 months &middot; R 400.1901(v)(tt)</div>
-                            </div>
-                            <div class="milestone-date">${fmt(d12)}</div>
+                section.innerHTML = `
+                    <div class="result-card">
+                        <div class="result-header">
+                            <div class="result-child-name">${esc(name)}</div>
+                            <div class="result-dob">Date of Birth: ${fmt(dob)}</div>
                         </div>
-                        <div class="milestone">
-                            <div class="milestone-info">
-                                <div class="milestone-title">Exits Under-24mo Ratio Cap</div>
-                                <div class="milestone-rule">24 months &middot; R 400.1927(3) / R 400.1928(4)</div>
+                        <div class="result-body">
+                            <div class="milestones-label">Michigan Licensing Milestones</div>
+                            <div class="milestone">
+                                <div class="milestone-info">
+                                    <div class="milestone-title">Infant &rarr; Toddler</div>
+                                    <div class="milestone-rule">12 months &middot; R 400.1901(v)(tt)</div>
+                                </div>
+                                <div class="milestone-date">${fmt(d12)}</div>
                             </div>
-                            <div class="milestone-date">${fmt(d24)}</div>
-                        </div>
-                        <div class="milestone">
-                            <div class="milestone-info">
-                                <div class="milestone-title">Toddler &rarr; Preschool</div>
-                                <div class="milestone-rule">30 months &middot; R 400.1901(tt)</div>
+                            <div class="milestone">
+                                <div class="milestone-info">
+                                    <div class="milestone-title">Exits Under-24mo Ratio Cap</div>
+                                    <div class="milestone-rule">24 months &middot; R 400.1927(3) / R 400.1928(4)</div>
+                                </div>
+                                <div class="milestone-date">${fmt(d24)}</div>
                             </div>
-                            <div class="milestone-date">${fmt(d30)}</div>
+                            <div class="milestone">
+                                <div class="milestone-info">
+                                    <div class="milestone-title">Toddler &rarr; Preschool</div>
+                                    <div class="milestone-rule">30 months &middot; R 400.1901(tt)</div>
+                                </div>
+                                <div class="milestone-date">${fmt(d30)}</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="result-footer">
-                        Michigan Dept. of Lifelong Education, Advancement &amp; Potential<br>
-                        Child Care Licensing Bureau &middot; Rules effective April 27, 2026<br>
-                        Generated: ${today}
+                        <div class="result-footer">
+                            Michigan Dept. of Lifelong Education, Advancement &amp; Potential<br>
+                            Child Care Licensing Bureau &middot; Rules effective April 27, 2026<br>
+                            Generated: ${today}
+                        </div>
                     </div>`;
+
+                // Set document title so PDF filename is meaningful
+                document.title = `Age+ — ${name}`;
+                showReport();
             } catch (e) {
-                resultDiv.innerHTML = `<div class="error-msg">${esc(e.message)}</div>`;
+                section.innerHTML = `<div class="error-msg">${esc(e.message)}</div>`;
+                showReport();
             }
         }
 
+        function showReport() {
+            document.body.classList.add('report-mode');
+            window.scrollTo(0, 0);
+        }
+
+        function showForm() {
+            document.body.classList.remove('report-mode');
+            document.title = 'Age+ Calculator';
+        }
+
+        /* ── Export PDF ── */
+        function exportPDF() {
+            window.print();
+        }
+
+        /* ── Init ── */
         window.addEventListener('load', () => {
             document.getElementById('dateInput').value =
                 new Date().toISOString().split('T')[0];
