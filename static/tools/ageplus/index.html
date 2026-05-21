@@ -1,175 +1,524 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="system">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgePlus Calculator</title>
+    <title>Age+ Calculator</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="icon.svg" type="image/svg+xml">
     <style>
+        *, *::before, *::after { box-sizing: border-box; }
+
+        /* ── DARK THEME ─────────────────────────────── */
+        [data-theme="dark"] {
+            --bg-gradient: radial-gradient(ellipse at top left, #181A20 60%, #101014 100%);
+            --bg-card: linear-gradient(180deg, rgba(22,22,24,0.97), rgba(28,28,30,0.97));
+            --bg-input: #2c2c2c;
+            --bg-result: #1c1c20;
+            --bg-milestone: rgba(187,134,252,0.07);
+            --border-card: rgba(255,255,255,0.04);
+            --border-input: #444;
+            --border-milestone: rgba(187,134,252,0.22);
+            --text-primary: #f0f0f5;
+            --text-secondary: #aaaaaa;
+            --text-muted: #686878;
+            --accent: #bb86fc;
+            --accent-hover: #9c4dcc;
+            --accent-on: #121212;
+            --shadow-card: 0 10px 30px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+            --badge-shadow: 0 6px 20px rgba(187,134,252,0.22);
+            --error: #cf6679;
+            --blur: blur(18px);
+            color-scheme: dark;
+        }
+
+        /* ── LIGHT THEME ────────────────────────────── */
+        [data-theme="light"] {
+            --bg-gradient: #ede8fa;
+            --bg-card: #ffffff;
+            --bg-input: #f3eeff;
+            --bg-result: #faf8ff;
+            --bg-milestone: #f3eeff;
+            --border-card: #ddd0f5;
+            --border-input: #c4aee8;
+            --border-milestone: #c8b4ea;
+            --text-primary: #1a0f2e;
+            --text-secondary: #5b4e75;
+            --text-muted: #9280ae;
+            --accent: #7c3aed;
+            --accent-hover: #6d28d9;
+            --accent-on: #ffffff;
+            --shadow-card: 0 8px 28px rgba(109,40,217,0.13);
+            --badge-shadow: 0 6px 16px rgba(109,40,217,0.28);
+            --error: #c0392b;
+            --blur: none;
+            color-scheme: light;
+        }
+
+        /* ── SYSTEM: defaults to light, overrides to dark ─ */
+        [data-theme="system"] {
+            --bg-gradient: #ede8fa;
+            --bg-card: #ffffff;
+            --bg-input: #f3eeff;
+            --bg-result: #faf8ff;
+            --bg-milestone: #f3eeff;
+            --border-card: #ddd0f5;
+            --border-input: #c4aee8;
+            --border-milestone: #c8b4ea;
+            --text-primary: #1a0f2e;
+            --text-secondary: #5b4e75;
+            --text-muted: #9280ae;
+            --accent: #7c3aed;
+            --accent-hover: #6d28d9;
+            --accent-on: #ffffff;
+            --shadow-card: 0 8px 28px rgba(109,40,217,0.13);
+            --badge-shadow: 0 6px 16px rgba(109,40,217,0.28);
+            --error: #c0392b;
+            --blur: none;
+            color-scheme: light;
+        }
+        @media (prefers-color-scheme: dark) {
+            [data-theme="system"] {
+                --bg-gradient: radial-gradient(ellipse at top left, #181A20 60%, #101014 100%);
+                --bg-card: linear-gradient(180deg, rgba(22,22,24,0.97), rgba(28,28,30,0.97));
+                --bg-input: #2c2c2c;
+                --bg-result: #1c1c20;
+                --bg-milestone: rgba(187,134,252,0.07);
+                --border-card: rgba(255,255,255,0.04);
+                --border-input: #444;
+                --border-milestone: rgba(187,134,252,0.22);
+                --text-primary: #f0f0f5;
+                --text-secondary: #aaaaaa;
+                --text-muted: #686878;
+                --accent: #bb86fc;
+                --accent-hover: #9c4dcc;
+                --accent-on: #121212;
+                --shadow-card: 0 10px 30px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+                --badge-shadow: 0 6px 20px rgba(187,134,252,0.22);
+                --error: #cf6679;
+                --blur: blur(18px);
+                color-scheme: dark;
+            }
+        }
+
+        /* ── BASE ───────────────────────────────────── */
         html, body {
-            height: 100vh;
-            overflow: hidden;
-            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(ellipse at top left, #181A20 60%, #101014 100%);
-            color: #ffffff;
-            margin: 0;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            transition: background 0.5s;
+            min-height: 100dvh;
+            transition: background 0.3s, color 0.3s;
         }
+
+        /* ── CONTAINER ──────────────────────────────── */
         .container {
-            background: linear-gradient(180deg, rgba(22,22,24,0.95), rgba(28,28,30,0.95));
-            padding: 30px;
-            border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
-            max-width: 350px;
+            background: var(--bg-card);
+            padding: 28px 28px 24px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-card);
+            max-width: 390px;
             width: 100%;
             position: relative;
-            backdrop-filter: blur(18px);
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid var(--border-card);
+            backdrop-filter: var(--blur);
         }
-        
+
+        /* ── BADGE ──────────────────────────────────── */
         .badge {
             position: absolute;
-            top: -18px;
+            top: -22px;
             left: 50%;
             transform: translateX(-50%);
-            width: 46px;
-            height: 46px;
-            border-radius: 8px;
-            background: #bb86fc;
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: var(--accent);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 20px rgba(187, 134, 252, 0.18);
+            box-shadow: var(--badge-shadow);
         }
-        
-        .badge img {
-            width: 32px;
-            height: 32px;
-        }
-        
+        .badge img { width: 32px; height: 32px; }
+
+        /* ── HEADER ─────────────────────────────────── */
         h1 {
             text-align: center;
-            margin-bottom: 20px;
-            color: #bb86fc;
+            margin: 22px 0 4px;
+            color: var(--accent);
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
         }
-        input {
-            width: 250px;
-            padding: 10px;
-            margin: 10px auto;
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin: 0 0 18px;
+            line-height: 1.4;
+        }
+
+        /* ── THEME SWITCHER ─────────────────────────── */
+        .theme-switcher {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .theme-btn {
+            padding: 5px 13px;
+            border-radius: 20px;
+            border: 1px solid var(--border-input);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: auto;
+        }
+        .theme-btn.active {
+            background: var(--accent);
+            color: var(--accent-on);
+            border-color: var(--accent);
+            font-weight: 600;
+        }
+        .theme-btn:hover:not(.active) {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ── FORM ───────────────────────────────────── */
+        .form-group { margin-bottom: 12px; }
+        label {
             display: block;
-            border: 1px solid #333;
-            border-radius: 5px;
-            background-color: #2c2c2c;
-            color: #ffffff;
-            font-size: 16px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
         }
-        button {
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-input);
+            border-radius: 8px;
+            background: var(--bg-input);
+            color: var(--text-primary);
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input[type="text"]:focus,
+        input[type="date"]:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+        }
+        input::placeholder { color: var(--text-muted); opacity: 0.8; }
+
+        /* ── BUTTON ─────────────────────────────────── */
+        .calc-btn {
             width: 100%;
             padding: 12px;
-            background-color: #bb86fc;
-            color: #121212;
+            background: var(--accent);
+            color: var(--accent-on);
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 6px;
+            transition: background 0.2s, transform 0.1s;
+            letter-spacing: 0.2px;
         }
-        button:hover {
-            background-color: #9c4dcc;
-        }
+        .calc-btn:hover { background: var(--accent-hover); }
+        .calc-btn:active { transform: scale(0.98); }
+
+        /* ── RESULT / REPORT ────────────────────────── */
         .result {
             margin-top: 20px;
-            padding: 10px;
-            background-color: #2c2c2c;
-            border-radius: 5px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-milestone);
+        }
+        .result-header {
+            background: var(--accent);
+            color: var(--accent-on);
+            padding: 13px 16px 11px;
             text-align: center;
         }
-        .error {
-            color: #cf6679;
+        .result-child-name {
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: -0.2px;
         }
+        .result-dob {
+            font-size: 12px;
+            opacity: 0.85;
+            margin-top: 3px;
+        }
+        .result-body { background: var(--bg-result); padding: 14px; }
+        .milestones-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .milestone {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 13px;
+            border-radius: 8px;
+            background: var(--bg-milestone);
+            border: 1px solid var(--border-milestone);
+            margin-bottom: 8px;
+        }
+        .milestone:last-child { margin-bottom: 0; }
+        .milestone-info { flex: 1; min-width: 0; }
+        .milestone-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+        .milestone-rule {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .milestone-date {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--accent);
+            text-align: right;
+            white-space: nowrap;
+            margin-left: 12px;
+            flex-shrink: 0;
+        }
+        .result-footer {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 8px 12px;
+            line-height: 1.6;
+            border-top: 1px solid var(--border-milestone);
+            background: var(--bg-result);
+        }
+        .error-msg {
+            padding: 14px 16px;
+            color: var(--error);
+            text-align: center;
+            font-size: 14px;
+            background: var(--bg-result);
+        }
+
+        /* ── PRINT ──────────────────────────────────── */
+        @media print {
+            html, body {
+                background: #fff !important;
+                color: #000 !important;
+                margin: 0;
+                padding: 8px;
+                min-height: auto;
+            }
+            .no-print { display: none !important; }
+            .container {
+                box-shadow: none !important;
+                border: 1px solid #ccc;
+                max-width: 100%;
+                padding: 16px;
+                border-radius: 8px;
+                background: #fff !important;
+            }
+            .print-header {
+                display: block !important;
+                text-align: center;
+                font-size: 18px;
+                font-weight: 700;
+                color: #333;
+                margin-bottom: 12px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #ccc;
+            }
+            .result {
+                border-color: #ccc !important;
+            }
+            .result-header {
+                background: #2d1b6b !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .result-child-name, .result-dob { color: #fff !important; }
+            .result-body { background: #fff !important; }
+            .milestone {
+                background: #f7f4fc !important;
+                border-color: #ddd !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .milestone-title { color: #111 !important; }
+            .milestone-rule { color: #777 !important; }
+            .milestone-date { color: #2d1b6b !important; }
+            .result-footer {
+                color: #888 !important;
+                border-color: #ddd !important;
+                background: #fff !important;
+            }
+        }
+        .print-header { display: none; }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="badge">
-            <img src="icon.svg" alt="AgePlus Logo">
+        <div class="badge no-print">
+            <img src="icon.svg" alt="Age+">
         </div>
-        <h1>AgePlus Calculator</h1>
-        <p style="text-align: center; margin-bottom: 20px; font-size: 14px; color: #cccccc;">Enter the child's birthday to see when they are a Toddler or School Age.</p>
-        <input type="date" id="dateInput">
-        <button onclick="calculate()">Calculate</button>
-        <div id="result" class="result" style="display: none;"></div>
+
+        <div class="print-header">Age+ Licensing Milestones</div>
+
+        <div class="no-print">
+            <h1>Age+ Calculator</h1>
+            <p class="subtitle">Michigan child care licensing milestones &amp; ratio categories</p>
+
+            <div class="theme-switcher">
+                <button class="theme-btn" data-tv="system" onclick="setTheme('system')">System</button>
+                <button class="theme-btn" data-tv="light" onclick="setTheme('light')">Light</button>
+                <button class="theme-btn" data-tv="dark" onclick="setTheme('dark')">Dark</button>
+            </div>
+
+            <div class="form-group">
+                <label for="nameInput">Child's Name <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+                <input type="text" id="nameInput" placeholder="Child" autocomplete="off" maxlength="60">
+            </div>
+            <div class="form-group">
+                <label for="dateInput">Date of Birth</label>
+                <input type="date" id="dateInput">
+            </div>
+            <button class="calc-btn" onclick="calculate()">Calculate Milestones</button>
+        </div>
+
+        <div id="result"></div>
     </div>
 
     <script>
-        function addMonths(date, months) {
-            // Set time to noon to avoid timezone off-by-one errors
-            const result = new Date(date);
-            result.setHours(12, 0, 0, 0);
-            const day = result.getDate();
-            result.setDate(1); // Prevent rollover
-            result.setMonth(result.getMonth() + months);
-            // Set to last day of month if original day doesn't exist in new month
-            const lastDay = new Date(result.getFullYear(), result.getMonth() + 1, 0).getDate();
-            result.setDate(Math.min(day, lastDay));
-            return result;
+        function setTheme(t) {
+            document.documentElement.setAttribute('data-theme', t);
+            localStorage.setItem('ageplus-theme', t);
+            document.querySelectorAll('.theme-btn').forEach(b =>
+                b.classList.toggle('active', b.dataset.tv === t)
+            );
         }
 
-        function formatDate(date) {
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const day = String(date.getDate()).padStart(2, '0');
-            const year = String(date.getFullYear()).slice(-2);
-            return `${month}/${day}/${year}`;
+        // Restore saved theme (default: system)
+        setTheme(localStorage.getItem('ageplus-theme') || 'system');
+
+        function addMonths(date, months) {
+            const d = new Date(date);
+            d.setHours(12, 0, 0, 0);
+            const day = d.getDate();
+            d.setDate(1);
+            d.setMonth(d.getMonth() + months);
+            const last = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+            d.setDate(Math.min(day, last));
+            return d;
+        }
+
+        function fmt(date) {
+            const m = String(date.getMonth() + 1).padStart(2, '0');
+            const d = String(date.getDate()).padStart(2, '0');
+            return `${m}/${d}/${date.getFullYear()}`;
+        }
+
+        function esc(s) {
+            const d = document.createElement('div');
+            d.textContent = s;
+            return d.innerHTML;
         }
 
         function calculate() {
             const dateStr = document.getElementById('dateInput').value;
+            const rawName = document.getElementById('nameInput').value.trim();
+            const name = rawName || 'Child';
             const resultDiv = document.getElementById('result');
 
+            if (!dateStr) {
+                resultDiv.innerHTML = '<div class="error-msg">Please enter a date of birth.</div>';
+                return;
+            }
+
             try {
-                // Parse as UTC to avoid timezone issues
-                const [year, month, day] = dateStr.split('-').map(Number);
-                const date = new Date(Date.UTC(year, month - 1, day, 12, 0, 0, 0));
-                if (isNaN(date.getTime())) throw new Error('Invalid date');
+                const [yr, mo, dy] = dateStr.split('-').map(Number);
+                const dob = new Date(Date.UTC(yr, mo - 1, dy, 12, 0, 0));
+                if (isNaN(dob.getTime())) throw new Error('Invalid date. Please try again.');
 
-                const date18 = addMonths(date, 18);
-                const date30 = addMonths(date, 30);
+                const d12 = addMonths(dob, 12);
+                const d24 = addMonths(dob, 24);
+                const d30 = addMonths(dob, 30);
 
-                const formattedInput = formatDate(date);
+                const today = new Date().toLocaleDateString('en-US', {
+                    month: '2-digit', day: '2-digit', year: 'numeric'
+                });
+
                 resultDiv.innerHTML = `
-                    <p><strong>Toddler (18 months):</strong> ${formatDate(date18)}</p>
-                    <p><strong>School aged (30 months):</strong> ${formatDate(date30)}</p>
-                `;
-                resultDiv.className = 'result';
-                resultDiv.style.display = 'block';
-            } catch (error) {
-                resultDiv.innerHTML = `<p class="error">${error.message}</p>`;
-                resultDiv.className = 'result error';
-                resultDiv.style.display = 'block';
+                    <div class="result-header">
+                        <div class="result-child-name">${esc(name)}</div>
+                        <div class="result-dob">Date of Birth: ${fmt(dob)}</div>
+                    </div>
+                    <div class="result-body">
+                        <div class="milestones-label">Michigan Licensing Milestones</div>
+                        <div class="milestone">
+                            <div class="milestone-info">
+                                <div class="milestone-title">Infant &rarr; Toddler</div>
+                                <div class="milestone-rule">12 months &middot; R 400.1901(v)(tt)</div>
+                            </div>
+                            <div class="milestone-date">${fmt(d12)}</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-info">
+                                <div class="milestone-title">Exits Under-24mo Ratio Cap</div>
+                                <div class="milestone-rule">24 months &middot; R 400.1927(3) / R 400.1928(4)</div>
+                            </div>
+                            <div class="milestone-date">${fmt(d24)}</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-info">
+                                <div class="milestone-title">Toddler &rarr; Preschool</div>
+                                <div class="milestone-rule">30 months &middot; R 400.1901(tt)</div>
+                            </div>
+                            <div class="milestone-date">${fmt(d30)}</div>
+                        </div>
+                    </div>
+                    <div class="result-footer">
+                        Michigan Dept. of Lifelong Education, Advancement &amp; Potential<br>
+                        Child Care Licensing Bureau &middot; Rules effective April 27, 2026<br>
+                        Generated: ${today}
+                    </div>`;
+            } catch (e) {
+                resultDiv.innerHTML = `<div class="error-msg">${esc(e.message)}</div>`;
             }
         }
 
-        // Set default date to today
         window.addEventListener('load', () => {
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('dateInput').value = today;
+            document.getElementById('dateInput').value =
+                new Date().toISOString().split('T')[0];
         });
 
-        // Register service worker
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js');
-            });
+            window.addEventListener('load', () => navigator.serviceWorker.register('sw.js'));
         }
     </script>
 </body>

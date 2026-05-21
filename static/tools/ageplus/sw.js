@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ageplus-v1';
+const CACHE_NAME = 'ageplus-v2';
 const urlsToCache = [
     './',
     './index.html',

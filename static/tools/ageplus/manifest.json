@@ -1,7 +1,7 @@
 {
     "name": "AgePlus Calculator",
     "short_name": "AgePlus",
-    "description": "Calculate dates 18 and 30 months from a given date",
+    "description": "Michigan child care licensing milestones and ratio categories",
     "start_url": "index.html",
     "display": "standalone",
     "background_color": "#121212",
