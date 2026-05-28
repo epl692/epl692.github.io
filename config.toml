@@ -86,6 +86,10 @@ enableRobotsTXT = true
           identifier = "tools_hdc"
           name = "Tool: Hole Depth Calculator"
           url = "/tools/hole-depth-calc"
+        [[languages.en.menu.mainn]]
+          identifier = "tools_daycare_ratio"
+          name = "Tool: Daycare Ratio Tracker"
+          url = "/tools/daycare-ratio"
 [[params.ananke_socials]]
 name = "twitter"
 url = "https://twitter.com/epl692"
