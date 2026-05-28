@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#7c3aed" />
+  <link rel="manifest" href="manifest.json" />
+  <title>Daycare Ratio Tracker</title>
+  <style>
+    /* ── Design tokens ── */
+    :root {
+      --purple:       #7c3aed;
+      --purple-dark:  #6d28d9;
+      --purple-light: #ede9fe;
+      --purple-dim:   #4c1d95;
+
+      --bg:           #faf5ff;
+      --bg-card:      #ffffff;
+      --bg-input:     #f3f0ff;
+      --border:       #ddd6fe;
+      --text:         #1e1b4b;
+      --text-muted:   #6b7280;
+      --text-on-purple: #ffffff;
+
+      --shadow:       0 1px 4px rgba(124,58,237,.10), 0 4px 16px rgba(124,58,237,.08);
+      --radius:       14px;
+      --radius-sm:    8px;
+
+      --infant-bg:    #fef3c7; --infant-text: #92400e;
+      --toddler-bg:   #dbeafe; --toddler-text: #1e40af;
+      --pre-bg:       #d1fae5; --pre-text:    #065f46;
+      --related-bg:   #fef9c3; --related-text: #713f12;
+      --exempt-bg:    #f1f5f9; --exempt-text:  #64748b;
+    }
+    [data-theme="dark"] {
+      --bg:           #0f0a1a;
+      --bg-card:      #1a1128;
+      --bg-input:     #231838;
+      --border:       #3b2f6e;
+      --text:         #ede9fe;
+      --text-muted:   #a78bfa;
+      --shadow:       0 1px 4px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+
+      --infant-bg:    #451a03; --infant-text: #fcd34d;
+      --toddler-bg:   #1e3a5f; --toddler-text: #93c5fd;
+      --pre-bg:       #064e3b; --pre-text:    #6ee7b7;
+      --related-bg:   #422006; --related-text: #fde68a;
+      --exempt-bg:    #1e293b; --exempt-text:  #94a3b8;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg:           #0f0a1a;
+        --bg-card:      #1a1128;
+        --bg-input:     #231838;
+        --border:       #3b2f6e;
+        --text:         #ede9fe;
+        --text-muted:   #a78bfa;
+        --shadow:       0 1px 4px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+
+        --infant-bg:    #451a03; --infant-text: #fcd34d;
+        --toddler-bg:   #1e3a5f; --toddler-text: #93c5fd;
+        --pre-bg:       #064e3b; --pre-text:    #6ee7b7;
+        --related-bg:   #422006; --related-text: #fde68a;
+        --exempt-bg:    #1e293b; --exempt-text:  #94a3b8;
+      }
+    }
+
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      transition: background .2s, color .2s;
+    }
+
+    /* ── Layout ── */
+    .app { max-width: 480px; margin: 0 auto; padding: 0 0 96px; }
+
+    /* ── Header ── */
+    header {
+      background: var(--purple);
+      color: var(--text-on-purple);
+      padding: 18px 20px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(124,58,237,.35);
+    }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-icon { font-size: 1.5rem; }
+    header h1 { font-size: 1.1rem; font-weight: 700; letter-spacing: -.01em; }
+    header p  { font-size: .72rem; opacity: .82; }
+    #theme-btn {
+      background: rgba(255,255,255,.18);
+      border: none;
+      border-radius: 50%;
+      width: 38px; height: 38px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+      flex-shrink: 0;
+    }
+    #theme-btn:hover { background: rgba(255,255,255,.3); }
+
+    /* ── Sections ── */
+    .section { margin: 16px 12px 0; }
+
+    /* ── Card ── */
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+    .card-header h2 { font-size: .95rem; font-weight: 600; }
+    .chevron { font-size: .8rem; transition: transform .2s; color: var(--text-muted); }
+    .card-header[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+    .card-body { padding: 0 16px 16px; }
+    .card-body.collapsed { display: none; }
+
+    /* ── Date picker ── */
+    .date-row {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .date-row label { font-size: .88rem; font-weight: 600; white-space: nowrap; }
+    #care-date {
+      flex: 1;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      color: var(--text);
+      padding: 8px 10px;
+      font-size: .95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .15s;
+    }
+    #care-date:focus { border-color: var(--purple); }
+
+    /* ── Settings rows ── */
+    .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .setting-row:last-child { border-bottom: none; }
+    .setting-label { font-size: .85rem; flex: 1; }
+    .setting-label strong { font-weight: 700; display: block; font-size: .88rem; }
+    .setting-label span  { font-size: .73rem; color: var(--text-muted); }
+
+    /* ── Form ── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding-top: 4px;
+    }
+    .form-full { grid-column: 1 / -1; }
+    label.field-label { font-size: .78rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 4px; }
+    input[type="text"], input[type="date"] {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      color: var(--text);
+      padding: 9px 11px;
+      font-size: .93rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .15s;
+    }
+    input[type="text"]:focus, input[type="date"]:focus { border-color: var(--purple); }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 0 2px;
+    }
+    .toggle-row span { font-size: .88rem; }
+
+    /* ── Toggle switch ── */
+    .switch { position: relative; display: inline-block; width: 44px; height: 26px; flex-shrink: 0; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute; inset: 0;
+      background: var(--border);
+      border-radius: 26px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .slider::before {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      left: 3px; bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: transform .2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,.2);
+    }
+    .switch input:checked + .slider { background: var(--purple); }
+    .switch input:checked + .slider::before { transform: translateX(18px); }
+
+    /* ── Button ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s, transform .1s;
+    }
+    .btn:active { transform: scale(.97); }
+    .btn-primary {
+      background: var(--purple);
+      color: white;
+      padding: 11px 20px;
+      font-size: .95rem;
+      width: 100%;
+      margin-top: 12px;
+    }
+    .btn-primary:hover { background: var(--purple-dark); }
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: .8rem;
+      background: var(--bg-input);
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+    .btn-sm:hover { border-color: var(--purple); color: var(--purple); }
+    .btn-danger { color: #dc2626; border-color: #fecaca; }
+    .btn-danger:hover { background: #fef2f2; border-color: #dc2626; color: #dc2626; }
+    [data-theme="dark"] .btn-danger:hover { background: #3b0a0a; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .btn-danger:hover { background: #3b0a0a; }
+    }
+
+    /* ── Summary table ── */
+    .summary-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    .summary-table th {
+      text-align: left;
+      padding: 8px 10px;
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--text-muted);
+      border-bottom: 1.5px solid var(--border);
+    }
+    .summary-table th:not(:first-child) { text-align: center; }
+    .summary-table td {
+      padding: 10px 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .summary-table td:not(:first-child) { text-align: center; }
+    .summary-table tr:last-child td { border-bottom: none; font-weight: 700; }
+    .count-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      border-radius: 99px;
+      font-weight: 700;
+      font-size: .9rem;
+      padding: 0 6px;
+    }
+    .count-infant   { background: var(--infant-bg);   color: var(--infant-text); }
+    .count-toddler  { background: var(--toddler-bg);  color: var(--toddler-text); }
+    .count-pre      { background: var(--pre-bg);      color: var(--pre-text); }
+    .count-total    { background: var(--purple-light); color: var(--purple-dim); }
+    [data-theme="dark"] .count-total { background: var(--purple-dim); color: #ede9fe; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .count-total { background: var(--purple-dim); color: #ede9fe; }
+    }
+
+    .ratio-pill {
+      font-size: .75rem;
+      font-weight: 600;
+      border-radius: 99px;
+      padding: 2px 8px;
+      background: var(--bg-input);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    /* ── Staff needed banner ── */
+    .staff-banner {
+      margin: 12px 0 0;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--purple-light);
+      color: var(--purple-dim);
+      font-size: .88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #c4b5fd;
+    }
+    [data-theme="dark"] .staff-banner { background: var(--purple-dim); color: #ede9fe; border-color: var(--purple); }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .staff-banner { background: var(--purple-dim); color: #ede9fe; border-color: var(--purple); }
+    }
+
+    /* ── Children list ── */
+    #children-list { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; }
+    .child-card {
+      background: var(--bg-input);
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color .15s;
+    }
+    .child-card:hover { border-color: var(--purple); }
+    .child-card.absent { opacity: .5; }
+    .child-card.exempt { border-style: dashed; }
+    .child-info { flex: 1; min-width: 0; }
+    .child-name { font-weight: 600; font-size: .92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .child-meta { font-size: .73rem; color: var(--text-muted); margin-top: 1px; }
+    .cat-badge {
+      font-size: .68rem;
+      font-weight: 700;
+      border-radius: 99px;
+      padding: 2px 7px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .cat-infant    { background: var(--infant-bg);   color: var(--infant-text); }
+    .cat-toddler   { background: var(--toddler-bg);  color: var(--toddler-text); }
+    .cat-preschool { background: var(--pre-bg);      color: var(--pre-text); }
+    .cat-related   { background: var(--related-bg);  color: var(--related-text); }
+    .cat-exempt    { background: var(--exempt-bg);   color: var(--exempt-text); }
+
+    /* Related toggle button */
+    .related-btn {
+      padding: 4px 8px;
+      font-size: .72rem;
+      border-radius: 99px;
+      background: var(--bg-input);
+      color: var(--text-muted);
+      border: 1.5px solid var(--border);
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .related-btn.active {
+      background: var(--related-bg);
+      color: var(--related-text);
+      border-color: currentColor;
+    }
+
+    .empty-msg {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: .88rem;
+      padding: 20px 0 8px;
+    }
+
+    /* ── Data row ── */
+    .data-row {
+      display: flex;
+      gap: 8px;
+      padding: 14px 16px 0;
+    }
+
+    /* ── Responsive tweaks ── */
+    @media (min-width: 420px) {
+      .app { padding: 0 0 112px; }
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <span class="logo-icon">🧒</span>
+      <div>
+        <h1>Daycare Ratio Tracker</h1>
+        <p>Michigan Licensed Child Care · 2026 Rules</p>
+      </div>
+    </div>
+    <button id="theme-btn" aria-label="Toggle theme">🌙</button>
+  </header>
+
+  <!-- Date of Care -->
+  <div class="section">
+    <div class="card">
+      <div class="date-row">
+        <label for="care-date">📅 Date of Care</label>
+        <input type="date" id="care-date" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings -->
+  <div class="section">
+    <div class="card">
+      <!-- R 400.1927(2): Expanded capacity toggle -->
+      <div class="setting-row">
+        <div class="setting-label">
+          <strong>Expanded Capacity</strong>
+          <span>R 400.1927(2) — approved for 1 staff : 7 children</span>
+        </div>
+        <label class="switch" title="Toggle expanded capacity approval">
+          <input type="checkbox" id="expanded-toggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="section">
+    <div class="card">
+      <div class="card-header" id="summary-header" aria-expanded="true" role="button" tabindex="0">
+        <h2>📊 Ratio Summary</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="card-body" id="summary-body">
+        <table class="summary-table" aria-label="Age category summary">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Present</th>
+              <th>Max / Staff</th>
+              <th>Staff Min</th>
+            </tr>
+          </thead>
+          <tbody id="summary-rows"></tbody>
+        </table>
+        <div id="staff-banner" class="staff-banner" style="display:none"></div>
+        <div id="ratio-note" style="font-size:.75rem;color:var(--text-muted);margin-top:10px;line-height:1.5;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Child -->
+  <div class="section">
+    <div class="card">
+      <div class="card-header" id="add-header" aria-expanded="true" role="button" tabindex="0">
+        <h2>➕ Add Child</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="card-body" id="add-body">
+        <div class="form-grid">
+          <div class="form-full">
+            <label class="field-label" for="child-name">Full Name</label>
+            <input type="text" id="child-name" placeholder="e.g. Emma Smith" autocomplete="off" />
+          </div>
+          <div>
+            <label class="field-label" for="child-bday">Birthday</label>
+            <input type="date" id="child-bday" />
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:flex-end;">
+            <label class="field-label">Present Today</label>
+            <div class="toggle-row">
+              <span>Present</span>
+              <label class="switch">
+                <input type="checkbox" id="child-present" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:flex-end;">
+            <label class="field-label" title="R 400.1927(1)(a) — unrelated children always count; related children under school-age count per (1)(b)">
+              Related to Staff <span style="color:var(--purple);font-size:.7rem;">§(1)(a)</span>
+            </label>
+            <div class="toggle-row">
+              <span>Related</span>
+              <label class="switch">
+                <input type="checkbox" id="child-related" />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="add-btn">Add Child</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Children List -->
+  <div class="section">
+    <div class="card">
+      <div class="card-header" id="list-header" aria-expanded="true" role="button" tabindex="0">
+        <h2>👶 Children (<span id="child-count">0</span>)</h2>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="card-body" id="list-body">
+        <div id="children-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Export / Import -->
+  <div class="section">
+    <div class="card">
+      <div class="data-row" style="padding-bottom:14px;">
+        <button class="btn btn-sm" id="export-btn">⬇ Export JSON</button>
+        <button class="btn btn-sm" id="import-btn">⬆ Import JSON</button>
+        <input type="file" id="import-file" accept=".json" style="display:none" />
+      </div>
+    </div>
+  </div>
+
+</div><!-- /app -->
+
+<script>
+  // ── Constants ─────────────────────────────────────────────────────────────
+  const STORE_KEY    = 'daycare-children-v1';
+  const THEME_KEY    = 'daycare-theme';
+  const EXPANDED_KEY = 'daycare-expanded-capacity';
+  // R 400.1927(1)(b): "child under school-age" — Michigan compulsory age is 6, but
+  // kindergarten (school entry) is typically 5. We treat 60 months (5 years) as school-age.
+  const SCHOOL_AGE_MONTHS = 60;
+
+  // ── Storage ───────────────────────────────────────────────────────────────
+  function loadChildren() {
+    try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
+    catch { return []; }
+  }
+  function saveChildren(arr) {
+    localStorage.setItem(STORE_KEY, JSON.stringify(arr));
+  }
+
+  // ── State ─────────────────────────────────────────────────────────────────
+  let children = loadChildren();
+
+  // ── Helpers ───────────────────────────────────────────────────────────────
+  function todayStr() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  }
+
+  function ageInMonths(birthdayStr, careDateStr) {
+    const b = new Date(birthdayStr + 'T00:00:00');
+    const c = new Date(careDateStr + 'T00:00:00');
+    let months = (c.getFullYear() - b.getFullYear()) * 12 + (c.getMonth() - b.getMonth());
+    if (c.getDate() < b.getDate()) months--;
+    return Math.max(0, months);
+  }
+
+  function ageCategory(months) {
+    if (months < 12) return 'infant';
+    if (months < 30) return 'toddler';
+    return 'preschool';
+  }
+
+  function catLabel(cat) {
+    return { infant: 'Infant', toddler: 'Toddler', preschool: 'Preschool' }[cat];
+  }
+
+  function formatAge(months) {
+    if (months < 12) return `${months} mo`;
+    const y = Math.floor(months / 12);
+    const m = months % 12;
+    return m ? `${y}y ${m}mo` : `${y}y`;
+  }
+
+  function uuid() {
+    return crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2);
+  }
+
+  // R 400.1927(1): does this child count toward the ratio on careDate?
+  // (a) unrelated children always count
+  // (b) related children count only if under school-age
+  function childCountsInRatio(child, months) {
+    if (!child.present || !child.birthday) return false;
+    if (!child.related) return true;             // (1)(a)
+    return months < SCHOOL_AGE_MONTHS;           // (1)(b)
+  }
+
+  // ── Theme ─────────────────────────────────────────────────────────────────
+  const html = document.documentElement;
+  const themeBtn = document.getElementById('theme-btn');
+
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      html.setAttribute('data-theme', 'light');
+      themeBtn.textContent = '🌙';
+    } else if (theme === 'dark') {
+      html.setAttribute('data-theme', 'dark');
+      themeBtn.textContent = '☀️';
+    } else {
+      html.removeAttribute('data-theme');
+      const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      themeBtn.textContent = sysDark ? '☀️' : '🌙';
+    }
+  }
+
+  function currentTheme() { return localStorage.getItem(THEME_KEY) || 'system'; }
+
+  applyTheme(currentTheme());
+
+  themeBtn.addEventListener('click', () => {
+    const themes = ['system', 'light', 'dark'];
+    const next = themes[(themes.indexOf(currentTheme()) + 1) % themes.length];
+    localStorage.setItem(THEME_KEY, next);
+    applyTheme(next);
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (currentTheme() === 'system') applyTheme('system');
+  });
+
+  // ── Expanded capacity toggle (R 400.1927(2)) ──────────────────────────────
+  const expandedToggle = document.getElementById('expanded-toggle');
+  expandedToggle.checked = localStorage.getItem(EXPANDED_KEY) === 'true';
+  expandedToggle.addEventListener('change', () => {
+    localStorage.setItem(EXPANDED_KEY, expandedToggle.checked);
+    render();
+  });
+  function isExpanded() { return expandedToggle.checked; }
+
+  // ── Care date ─────────────────────────────────────────────────────────────
+  const careDateInput = document.getElementById('care-date');
+  careDateInput.value = todayStr();
+  careDateInput.addEventListener('change', render);
+  function getCareDate() { return careDateInput.value || todayStr(); }
+
+  // ── Collapsible cards ─────────────────────────────────────────────────────
+  function setupCollapsible(headerId, bodyId) {
+    const header = document.getElementById(headerId);
+    const body   = document.getElementById(bodyId);
+    header.addEventListener('click', () => {
+      const open = header.getAttribute('aria-expanded') === 'true';
+      header.setAttribute('aria-expanded', String(!open));
+      body.classList.toggle('collapsed', open);
+    });
+    header.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); header.click(); }
+    });
+  }
+  setupCollapsible('summary-header', 'summary-body');
+  setupCollapsible('add-header',     'add-body');
+  setupCollapsible('list-header',    'list-body');
+
+  // ── Summary ───────────────────────────────────────────────────────────────
+  function computeSummary(careDate) {
+    const cats = { infant: 0, toddler: 0, preschool: 0 };
+    for (const c of children) {
+      if (!c.birthday) continue;
+      const months = ageInMonths(c.birthday, careDate);
+      if (!childCountsInRatio(c, months)) continue;
+      cats[ageCategory(months)]++;
+    }
+    return cats;
+  }
+
+  function staffNeeded(cats, expanded) {
+    const { infant, toddler, preschool } = cats;
+    const total    = infant + toddler + preschool;
+    if (total === 0) return 0;
+    const maxTotal = expanded ? 7 : 6;
+    const byInfant  = Math.ceil(infant / 2);
+    const byUnder24 = Math.ceil((infant + toddler) / 4);
+    const byTotal   = Math.ceil(total / maxTotal);
+    return Math.max(byInfant, byUnder24, byTotal);
+  }
+
+  function renderSummary(careDate) {
+    const expanded = isExpanded();
+    const cats  = computeSummary(careDate);
+    const total = cats.infant + cats.toddler + cats.preschool;
+    const staff = staffNeeded(cats, expanded);
+    const maxT  = expanded ? 7 : 6;
+    const tbody = document.getElementById('summary-rows');
+
+    const rows = [
+      { label: 'Infant',    subtitle: '< 12 months',    count: cats.infant,    maxPer: 2,     cls: 'count-infant' },
+      { label: 'Toddler',   subtitle: '12 – 29 months', count: cats.toddler,   maxPer: '4*',  cls: 'count-toddler' },
+      { label: 'Preschool', subtitle: '30+ months',     count: cats.preschool, maxPer: '—',   cls: 'count-pre' },
+    ];
+
+    tbody.innerHTML = rows.map(r => `
+      <tr>
+        <td>
+          <strong>${r.label}</strong><br>
+          <span style="font-size:.73rem;color:var(--text-muted)">${r.subtitle}</span>
+        </td>
+        <td><span class="count-badge ${r.cls}">${r.count}</span></td>
+        <td><span class="ratio-pill">${r.maxPer}</span></td>
+        <td>—</td>
+      </tr>
+    `).join('') + `
+      <tr>
+        <td><strong>Total Present</strong></td>
+        <td><span class="count-badge count-total">${total}</span></td>
+        <td><span class="ratio-pill">${maxT}</span></td>
+        <td><strong>${staff > 0 ? staff : '—'}</strong></td>
+      </tr>
+    `;
+
+    const banner = document.getElementById('staff-banner');
+    if (total > 0) {
+      banner.style.display = 'flex';
+      banner.innerHTML = `👩‍🏫 <span>Minimum <strong>${staff}</strong> staff member${staff !== 1 ? 's' : ''} required for ${total} counted child${total !== 1 ? 'ren' : ''}${expanded ? ' (expanded 1:7)' : ''}</span>`;
+    } else {
+      banner.style.display = 'none';
+    }
+
+    // Count exempt related children for the note
+    const careDate2 = careDate;
+    const exemptCount = children.filter(c => {
+      if (!c.present || !c.birthday || !c.related) return false;
+      return ageInMonths(c.birthday, careDate2) >= SCHOOL_AGE_MONTHS;
+    }).length;
+
+    document.getElementById('ratio-note').innerHTML =
+      `* Toddlers share the under-24-month cap: max 4 (infants + toddlers) per staff, of which max 2 may be infants. ` +
+      `Max ${maxT} total per staff${expanded ? ' (expanded capacity R 400.1927(2))' : ''} (MI 2026 FinalRule R 400.1927).` +
+      (exemptCount ? ` · <strong>${exemptCount}</strong> related school-age child${exemptCount !== 1 ? 'ren' : ''} exempt per R 400.1927(1)(a).` : '');
+  }
+
+  // ── Children list ─────────────────────────────────────────────────────────
+  function renderChildren(careDate) {
+    const list = document.getElementById('children-list');
+    document.getElementById('child-count').textContent = children.length;
+
+    if (children.length === 0) {
+      list.innerHTML = '<p class="empty-msg">No children added yet. Use the form above to get started.</p>';
+      return;
+    }
+
+    const sorted = [...children].sort((a, b) => {
+      const order = { infant: 0, toddler: 1, preschool: 2 };
+      const ma = a.birthday ? ageInMonths(a.birthday, careDate) : 999;
+      const mb = b.birthday ? ageInMonths(b.birthday, careDate) : 999;
+      const ca = ageCategory(ma), cb = ageCategory(mb);
+      if (order[ca] !== order[cb]) return order[ca] - order[cb];
+      return a.name.localeCompare(b.name);
+    });
+
+    list.innerHTML = sorted.map(child => {
+      const months  = child.birthday ? ageInMonths(child.birthday, careDate) : null;
+      const cat     = months !== null ? ageCategory(months) : null;
+      const ageTxt  = months !== null ? formatAge(months) : '—';
+      const counts  = months !== null ? childCountsInRatio(child, months) : false;
+      const isExempt = child.related && months !== null && months >= SCHOOL_AGE_MONTHS;
+
+      // Badge: show "Exempt" if related+school-age, "Related" if related+counts, else normal cat
+      let badgeHtml = '';
+      if (cat) {
+        if (isExempt) {
+          badgeHtml = `<span class="cat-badge cat-exempt" title="Related + school-age: exempt per R 400.1927(1)(b)">Exempt</span>`;
+        } else if (child.related) {
+          badgeHtml = `<span class="cat-badge cat-related" title="Related, under school-age: counts per R 400.1927(1)(b)">${catLabel(cat)} ·&nbsp;Rel.</span>`;
+        } else {
+          badgeHtml = `<span class="cat-badge cat-${cat}">${catLabel(cat)}</span>`;
+        }
+      }
+
+      const metaExtra = isExempt ? ' · <em>not counted in ratio</em>' : '';
+
+      return `
+        <div class="child-card ${child.present ? '' : 'absent'} ${isExempt ? 'exempt' : ''}" data-id="${child.id}">
+          <div class="child-info">
+            <div class="child-name">${escHtml(child.name || 'Unnamed')}</div>
+            <div class="child-meta">${child.birthday || '—'} · ${ageTxt}${metaExtra}</div>
+          </div>
+          ${badgeHtml}
+          <button class="btn related-btn ${child.related ? 'active' : ''} related-toggle"
+                  data-id="${child.id}"
+                  title="R 400.1927(1)(a)/(b) — toggle if this child is related to the licensee or a staff member">
+            §(1)(a)
+          </button>
+          <label class="switch" title="Toggle presence">
+            <input type="checkbox" class="presence-toggle" data-id="${child.id}" ${child.present ? 'checked' : ''} />
+            <span class="slider"></span>
+          </label>
+          <button class="btn btn-sm btn-danger delete-btn" data-id="${child.id}" aria-label="Remove ${escHtml(child.name)}">✕</button>
+        </div>
+      `;
+    }).join('');
+
+    list.querySelectorAll('.presence-toggle').forEach(cb => {
+      cb.addEventListener('change', e => {
+        const c = children.find(x => x.id === e.target.dataset.id);
+        if (c) { c.present = e.target.checked; saveChildren(children); render(); }
+      });
+    });
+    list.querySelectorAll('.related-toggle').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const c = children.find(x => x.id === e.currentTarget.dataset.id);
+        if (c) { c.related = !c.related; saveChildren(children); render(); }
+      });
+    });
+    list.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const id = e.currentTarget.dataset.id;
+        children = children.filter(x => x.id !== id);
+        saveChildren(children);
+        render();
+      });
+    });
+  }
+
+  function escHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ── Main render ───────────────────────────────────────────────────────────
+  function render() {
+    const cd = getCareDate();
+    renderSummary(cd);
+    renderChildren(cd);
+  }
+
+  // ── Add child ─────────────────────────────────────────────────────────────
+  document.getElementById('add-btn').addEventListener('click', () => {
+    const name    = document.getElementById('child-name').value.trim();
+    const bday    = document.getElementById('child-bday').value;
+    const present = document.getElementById('child-present').checked;
+    const related = document.getElementById('child-related').checked;
+
+    if (!name) {
+      const el = document.getElementById('child-name');
+      el.focus(); el.style.borderColor = '#dc2626';
+      setTimeout(() => el.style.borderColor = '', 1500);
+      return;
+    }
+    if (!bday) {
+      const el = document.getElementById('child-bday');
+      el.focus(); el.style.borderColor = '#dc2626';
+      setTimeout(() => el.style.borderColor = '', 1500);
+      return;
+    }
+
+    children.push({ id: uuid(), name, birthday: bday, present, related });
+    saveChildren(children);
+
+    document.getElementById('child-name').value  = '';
+    document.getElementById('child-bday').value  = '';
+    document.getElementById('child-present').checked = true;
+    document.getElementById('child-related').checked = false;
+
+    render();
+    document.getElementById('list-header').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  document.getElementById('child-name').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('add-btn').click();
+  });
+
+  // ── Export ────────────────────────────────────────────────────────────────
+  document.getElementById('export-btn').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(children, null, 2)], { type: 'application/json' });
+    const a    = document.createElement('a');
+    a.href     = URL.createObjectURL(blob);
+    a.download = `daycare-children-${getCareDate()}.json`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  // ── Import ────────────────────────────────────────────────────────────────
+  document.getElementById('import-btn').addEventListener('click', () => {
+    document.getElementById('import-file').click();
+  });
+  document.getElementById('import-file').addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const imported = JSON.parse(ev.target.result);
+        if (!Array.isArray(imported)) throw new Error('Not an array');
+        const action = children.length === 0
+          ? 'replace'
+          : (confirm(`Import ${imported.length} children?\n\nOK = Replace all existing\nCancel = Merge (add to existing)`) ? 'replace' : 'merge');
+        if (action === 'replace') {
+          children = imported.map(normalizeChild);
+        } else {
+          const ids = new Set(children.map(c => c.id));
+          for (const c of imported) {
+            const nc = normalizeChild(c);
+            if (!ids.has(nc.id)) { children.push(nc); ids.add(nc.id); }
+          }
+        }
+        saveChildren(children);
+        render();
+      } catch {
+        alert('Invalid JSON file. Please export from this app first.');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  });
+
+  function normalizeChild(c) {
+    return {
+      id:       c.id || uuid(),
+      name:     String(c.name || 'Unnamed'),
+      birthday: c.birthday || '',
+      present:  c.present !== false,
+      related:  c.related === true,
+    };
+  }
+
+  // ── PWA service worker ────────────────────────────────────────────────────
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  }
+
+  // ── Initial render ────────────────────────────────────────────────────────
+  render();
+</script>
+</body>
+</html>

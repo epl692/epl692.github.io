@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "daycare-pwa",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["serve", "--directory", "B:\\Daycare-Ratio-PWA"],
+      "port": 3001,
+      "autoPort": true
+    }
+  ]
+}

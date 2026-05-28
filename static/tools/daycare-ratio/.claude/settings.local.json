@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir /s)",
+      "Bash(dir \"B:\\\\Daycare-Ratio-PWA\")",
+      "Bash(python3 -c \"import pdfplumber; print\\('pdfplumber available'\\)\")",
+      "Bash(pdftotext \"B:\\\\\\\\Daycare Rules\\\\\\\\FinalRule\\(s\\).pdf\" -)"
+    ]
+  }
+}
