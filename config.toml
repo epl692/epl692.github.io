@@ -90,6 +90,10 @@ enableRobotsTXT = true
           identifier = "tools_daycare_ratio"
           name = "Tool: Daycare Ratio Tracker"
           url = "/tools/daycare-ratio"
+        [[languages.en.menu.main]]
+          identifier = "tools_dinner_sticks"
+          name = "Dinner Sticks"
+          url = "/tools/dinner-sticks"
 [[params.ananke_socials]]
 name = "twitter"
 url = "https://twitter.com/epl692"
