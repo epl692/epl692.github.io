@@ -86,13 +86,13 @@ enableRobotsTXT = true
           identifier = "tools_hdc"
           name = "Tool: Hole Depth Calculator"
           url = "/tools/hole-depth-calc"
-        [[languages.en.menu.mainn]]
+        [[languages.en.menu.main]]
           identifier = "tools_daycare_ratio"
           name = "Tool: Daycare Ratio Tracker"
           url = "/tools/daycare-ratio"
         [[languages.en.menu.main]]
           identifier = "tools_dinner_sticks"
-          name = "Dinner Sticks"
+          name = "Tool: Dinner Sticks"
           url = "/tools/dinner-sticks"
 [[params.ananke_socials]]
 name = "twitter"
