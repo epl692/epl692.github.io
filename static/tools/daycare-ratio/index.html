@@ -495,8 +495,8 @@
             </div>
           </div>
           <div style="display:flex;flex-direction:column;justify-content:flex-end;">
-            <label class="field-label" title="R 400.1927(1)(a) — unrelated children always count; related children under school-age count per (1)(b)">
-              Related to Staff <span style="color:var(--purple);font-size:.7rem;">§(1)(a)</span>
+            <label class="field-label" title="R 400.1927(1) — related to the licensee or a staff member by blood, marriage, or adoption. A related child still counts toward the ratio unless they are school-age AND enrolled in and attending school.">
+              Related to Staff
             </label>
             <div class="toggle-row">
               <span>Related</span>
@@ -543,8 +543,10 @@
   const STORE_KEY    = 'daycare-children-v1';
   const THEME_KEY    = 'daycare-theme';
   const EXPANDED_KEY = 'daycare-expanded-capacity';
-  // R 400.1927(1)(b): "child under school-age" — Michigan compulsory age is 6, but
-  // kindergarten (school entry) is typically 5. We treat 60 months (5 years) as school-age.
+  // R 400.1927(1)(b): a related child counts in the ratio unless they are "school-age."
+  // Michigan compulsory age is 6, but kindergarten (school entry) is typically 5, so we treat
+  // 60 months (5 years) as the age proxy. Per TA guidance, being old enough is not sufficient:
+  // the child must actually be enrolled in and attending school to be left out of the ratio.
   const SCHOOL_AGE_MONTHS = 60;
 
   // ── Storage ───────────────────────────────────────────────────────────────
@@ -573,9 +575,11 @@
     return Math.max(0, months);
   }
 
+  // Categories follow the R 400.1927(3) ratio thresholds (under 12 mo / under 24 mo),
+  // not the definitional "toddler = up to 30 months" — the ratio caps key off 24 months.
   function ageCategory(months) {
     if (months < 12) return 'infant';
-    if (months < 30) return 'toddler';
+    if (months < 24) return 'toddler';
     return 'preschool';
   }
 
@@ -701,8 +705,8 @@
 
     const rows = [
       { label: 'Infant',    subtitle: '< 12 months',    count: cats.infant,    maxPer: 2,     cls: 'count-infant' },
-      { label: 'Toddler',   subtitle: '12 – 29 months', count: cats.toddler,   maxPer: '4*',  cls: 'count-toddler' },
-      { label: 'Preschool', subtitle: '30+ months',     count: cats.preschool, maxPer: '—',   cls: 'count-pre' },
+      { label: 'Toddler',   subtitle: '12 – 23 months', count: cats.toddler,   maxPer: '4*',  cls: 'count-toddler' },
+      { label: 'Preschool', subtitle: '24+ months',     count: cats.preschool, maxPer: '—',   cls: 'count-pre' },
     ];
 
     tbody.innerHTML = rows.map(r => `
@@ -742,7 +746,8 @@
     document.getElementById('ratio-note').innerHTML =
       `* Toddlers share the under-24-month cap: max 4 (infants + toddlers) per staff, of which max 2 may be infants. ` +
       `Max ${maxT} total per staff${expanded ? ' (expanded capacity R 400.1927(2))' : ''} (MI 2026 FinalRule R 400.1927).` +
-      (exemptCount ? ` · <strong>${exemptCount}</strong> related school-age child${exemptCount !== 1 ? 'ren' : ''} exempt per R 400.1927(1)(a).` : '');
+      ` A related child still counts toward the ratio (R 400.1927(1)(b)) unless they are school-age <strong>and</strong> enrolled in and attending school.` +
+      (exemptCount ? ` · <strong>${exemptCount}</strong> related school-age child${exemptCount !== 1 ? 'ren' : ''} treated as exempt.` : '');
   }
 
   // ── Children list ─────────────────────────────────────────────────────────
@@ -794,8 +799,8 @@
           ${badgeHtml}
           <button class="btn related-btn ${child.related ? 'active' : ''} related-toggle"
                   data-id="${child.id}"
-                  title="R 400.1927(1)(a)/(b) — toggle if this child is related to the licensee or a staff member">
-            §(1)(a)
+                  title="R 400.1927(1) — related to the licensee or a staff member. A related child is only left out of the ratio once they are school-age AND enrolled in and attending school.">
+            Related
           </button>
           <label class="switch" title="Toggle presence">
             <input type="checkbox" class="presence-toggle" data-id="${child.id}" ${child.present ? 'checked' : ''} />
